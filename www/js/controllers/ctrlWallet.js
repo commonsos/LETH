@@ -1,4 +1,4 @@
-angular.module('leth.controllers')
+angular.module('podular.controllers')
   .controller('WalletCtrl', function ($scope, $rootScope, $stateParams, $ionicLoading, $ionicModal, $state, 
                                       $ionicPopup, $cordovaBarcodeScanner, $ionicActionSheet, 
                                       $timeout, ENSService, AppService, Transactions,ExchangeService, Chat) {

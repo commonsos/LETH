@@ -1,4 +1,4 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .factory('Friends', function ($rootScope, $http, $q) {
   return {
     all: function () {

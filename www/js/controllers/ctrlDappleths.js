@@ -1,5 +1,5 @@
-angular.module('leth.controllers')  
-  .controller('DapplethsCtrl', function ($rootScope, $scope, $state, angularLoad, $ionicLoading, 
+angular.module('podular.controllers')  
+  .controller('DapppodularsCtrl', function ($rootScope, $scope, $state, angularLoad, $ionicLoading, 
                                           $ionicListDelegate, $ionicPopup, $timeout, $templateRequest, 
                                           $sce, $compile, $ionicSlideBoxDelegate, $http, 
                                           $cordovaInAppBrowser, AppService) {
@@ -55,7 +55,7 @@ angular.module('leth.controllers')
       $ionicListDelegate.closeOptionButtons();
     };
   })
-  .controller('DapplethRunCtrl', function ($scope, $rootScope, $ionicHistory, angularLoad, $ionicLoading, $templateRequest, 
+  .controller('DapppodularRunCtrl', function ($scope, $rootScope, $ionicHistory, angularLoad, $ionicLoading, $templateRequest, 
                                           $sce, $interpolate, $compile, 	$ionicSlideBoxDelegate, $http, $stateParams,$timeout, 
                                           AppService, Chat, DappService) {
     var id = $stateParams.Id;
@@ -71,7 +71,7 @@ angular.module('leth.controllers')
     
     $scope.$on("$ionicView.afterEnter", function () {    
         angularLoad.loadScript($scope.Dapp.activeApp.Url.Script).then(function(result) {
-            dappleth.run({scope: $scope, service: DappService});
+            dapppodular.run({scope: $scope, service: DappService});
             $ionicLoading.hide();
         }).catch(function(err) {
             console.log('ERROR :' + $scope.Dapp.activeApp.Url.Script);
@@ -81,13 +81,13 @@ angular.module('leth.controllers')
     $scope.$on("$ionicView.beforeLeave", function () {
       $ionicHistory.clearCache();
 
-      dappleth.exit();
+      dapppodular.exit();
 
       angularLoad.resetScript($scope.Dapp.activeApp.Url.Script, "js");
       removejscssfile($scope.Dapp.activeApp.Url.Script, "js"); 
 
       $scope.Dapp.activeApp=null;
-      dappleth = null;
+      dapppodular = null;
     });
     
     $scope.refresh = function() {

@@ -1,4 +1,4 @@
-angular.module('leth.controllers')
+angular.module('podular.controllers')
   .controller('AddressCtrl', function ($scope, AppService, $ionicModal, $ionicPopup, $cordovaEmailComposer, $cordovaClipboard, $cordovaSms, $cordovaContacts) {
     $scope.size = 200;
     $scope.correctionLevel = 'H';
@@ -58,9 +58,9 @@ angular.module('leth.controllers')
     $scope.shareBySms = function() {
       var content;
       if($scope.isWalletAddress)
-        content = "My wallet address is leth://" + $scope.qrcodeString ;
+        content = "My wallet address is podular://" + $scope.qrcodeString ;
       if($scope.isShhAddress)
-        content = "My identity keys for Leth are leth://" + AppService.account() + "#" + AppService.idkey() ;
+        content = "My identity keys for podular are podular://" + AppService.account() + "#" + AppService.idkey() ;
       
       var phonenumber="";
       if (AppService.isPlatformReady()){
@@ -102,12 +102,12 @@ angular.module('leth.controllers')
 
       if($scope.isWalletAddress){
         mailSubj = 'Payment Request';
-        mailBody = '<h3>Please send me ETH to my Wallet Address:</h3> <p><a href="leth://' + $scope.qrcodeString + '"> click to pay from Leth</a></p>';
+        mailBody = '<h3>Please send me ETH to my Wallet Address:</h3> <p><a href="podular://' + $scope.qrcodeString + '"> click to pay from podular</a></p>';
       }
 
       if($scope.isShhAddress){
         mailSubj = 'Add me to Friends';
-        mailBody = '<h3>Please add me to your Leth friends:</h3> <p><a href="leth://' + $scope.qrcodeString + '"> click to add on Leth</a></p>';
+        mailBody = '<h3>Please add me to your podular friends:</h3> <p><a href="podular://' + $scope.qrcodeString + '"> click to add on podular</a></p>';
       }
 
       var imgQrcode = angular.element(document.querySelector('qr > img')).attr('ng-src');

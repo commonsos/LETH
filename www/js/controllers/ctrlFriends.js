@@ -1,4 +1,4 @@
-angular.module('leth.controllers')  
+angular.module('podular.controllers')  
   .controller('FriendsCtrl', function ($scope, Friends, $ionicListDelegate,  AppService, Chat) {    
     
     $scope.$on('$ionicView.enter', function() {

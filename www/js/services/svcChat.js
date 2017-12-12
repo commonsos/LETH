@@ -1,10 +1,10 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .factory('Chat', function ($rootScope, $http, $q, $sce, $filter, AppService, Friends, SwarmService) {
   var identity ="";
   var chats=[];
   var chatsDM=[];
   var chatsDAPP=[];
-  var topics = web3.fromUtf8('leth');
+  var topics = web3.fromUtf8('podular');
   var filter =  null;
 
   return{
@@ -31,7 +31,7 @@ angular.module('leth.services')
     },
     envelop: function(mode){
       return {
-        type: 'leth', 
+        type: 'podular', 
         mode: mode, 
         time: Date.now(), 
         from: AppService.account(), 
@@ -74,7 +74,7 @@ angular.module('leth.services')
     identity: function(){
       try{
         if(!web3.shh.hasSymKey(identity)){
-          identity = web3.shh.generateSymKeyFromPassword("leth");
+          identity = web3.shh.generateSymKeyFromPassword("podular");
         }        
       }catch(e){
         return;
@@ -102,7 +102,7 @@ angular.module('leth.services')
     },
     listTopics: function(){
       var list = JSON.parse( JSON.stringify( topics ) );
-      //var index = list.indexOf("leth");
+      //var index = list.indexOf("podular");
       //list.splice(index, 1);
       return list;
     },
@@ -279,7 +279,7 @@ angular.module('leth.services')
     },
     sendInviteToDapp: function (dapp,toAddr,toKey) {
       var content = dapp.message;
-      var msg = {type: 'leth', mode: 'encrypted', time: Date.now(), from: AppService.account(), to: [toAddr,AppService.account()] , senderKey: AppService.idkey() , text: content, image: '', attach: dapp };
+      var msg = {type: 'podular', mode: 'encrypted', time: Date.now(), from: AppService.account(), to: [toAddr,AppService.account()] , senderKey: AppService.idkey() , text: content, image: '', attach: dapp };
       var idFrom = this.identity();
 
       lightwallet.keystore.deriveKeyFromPassword(JSON.parse(localStorage.AppCode).code, function (err, pwDerivedKey) {

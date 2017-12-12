@@ -1,20 +1,20 @@
-<ion-view view-title="LΞTH" can-swipe-back="false">
+<ion-view view-title="Commons Podular" can-swipe-back="false">
   <ion-content class="has-header has-tabs scrollBg" >
     <ion-slide-box auto-play="true" does-continue="false" show-pager="false">
       <ion-slide>
         <div>
-          <a href="#" onclick="window.open('https://www.inzhoop.com','_blank','location=yes','closebuttoncaption=Return');"><img src="img/banners/header1.png"  height="150" ng-click="nextSlide()"/></a>
+          <a href="#" onclick="window.open('https://www.commonsos.com','_blank','location=yes','closebuttoncaption=Return');"><img src="img/banners/header1.png"  height="150" ng-click="nextSlide()"/></a>
         </div>
       </ion-slide>
       <ion-slide>
         <div>
-          <a href="#" onclick="window.open('https://www.inzhoop.com','_blank','location=yes','closebuttoncaption=Return');"><img src="img/banners/header2.png"  height="150" ng-click="nextSlide()"/></a>
+          <a href="#" onclick="window.open('https://www.commonsos.com','_blank','location=yes','closebuttoncaption=Return');"><img src="img/banners/header2.png"  height="150" ng-click="nextSlide()"/></a>
         </div>
       </ion-slide>
     </ion-slide-box>
     <div class="button-bar padding">
       <button class="{{filterStoreCoins}}" ng-click="readCoinsList()">Tokens</button>
-      <button class="{{filterStoreApps}}" ng-click="readDappsList()">ÐAppleths</button>
+      <button class="{{filterStoreApps}}" ng-click="readDappsList()">ÐApppodulars</button>
     </div>
 
     <div class="item-image">
@@ -30,25 +30,25 @@
             <img class="appIco" ng-src="/img/dappbuilder.png"/>
             <h2 class="title">Greet maker</h2>
             <p class="description">Your custom greet</p>
-            <h6 class="author">by Inzhoop</h6> 
+            <h6 class="author">by Inzhoop</h6>
           </a>
         </li>
       </ul>
     </div-->
-    <div class="text-center dark" ng-show="!listApps.length" ng-if="isDapp"><p>No Dappleth available :-(</p></div>
+    <div class="text-center dark" ng-show="!listApps.length" ng-if="isDapp"><p>No Dapppodular available :-(</p></div>
 
     <div class="categoryBox" ng-repeat="cat in listCategory" ng-if="isDapp && cat.List.length && isOnline">
 
-      <div class="categoryHead">{{cat.Name}} 
+      <div class="categoryHead">{{cat.Name}}
         <span class="item-note">#{{cat.List.length}}</span>
       </div>
       <ul class="appSlider">
         <li class="appBox" ng-repeat="dapp in listApps | inCategory:cat.List:'GUID'">
-          <a class="wrapper" ng-href="&#35;/tab/dappleth-run/{{dapp.GUID}}">
+          <a class="wrapper" ng-href="&#35;/tab/dapppodular-run/{{dapp.GUID}}">
             <img class="appIco" ng-src="{{getDappPath(dapp.GUID,dapp.Logo.Full)}}"/>
             <h2 class="title">{{dapp.Name}}</h2>
             <p class="description">{{dapp.Description.Title}}</p>
-            <h6 class="author">by {{dapp.Company}}</h6> 
+            <h6 class="author">by {{dapp.Company}}</h6>
           </a>
         </li>
       </ul>
@@ -60,9 +60,9 @@
             <p>{{coin.Abstract}}</p>
             <h6>by {{coin.Company}}</h6>
             <ion-spinner icon="ripple" class="icon spinner-positive" ng-show="coin.Progress"></ion-spinner>
-            <i class="icon ion-ios-checkmark-outline balanced" ng-hide="!coin.Installed || coin.Progress"></i>  
-            <i class="icon ion-ios-cloud-download-outline positive" ng-hide="coin.Installed || coin.Progress || coin.Custom" ng-click="installCoin(coin)"></i>  
-            <i class="icon ion-ios-circle-outline positive" ng-show="!coin.Installed && coin.Custom && !coin.Progress" ng-click="installCoin(coin)"></i> 
+            <i class="icon ion-ios-checkmark-outline balanced" ng-hide="!coin.Installed || coin.Progress"></i>
+            <i class="icon ion-ios-cloud-download-outline positive" ng-hide="coin.Installed || coin.Progress || coin.Custom" ng-click="installCoin(coin)"></i>
+            <i class="icon ion-ios-circle-outline positive" ng-show="!coin.Installed && coin.Custom && !coin.Progress" ng-click="installCoin(coin)"></i>
             <ion-option-button style="padding-top: 40px; font-size: 12px;" class="button-energized" ng-show="coin.Custom" ng-click="openFriendsModal(coin)">
               <i class="icon ion-share"></i>
               <span>Share</span>
@@ -82,8 +82,6 @@
             <p>{{'ADD_CUSTOM_TOKEN' | translate}}</p>
             <i class="icon ion-ios-plus-outline positive"></i>
       </ion-item>
-    </ion-list>  
+    </ion-list>
     </ion-content>
 </ion-view>
-
-

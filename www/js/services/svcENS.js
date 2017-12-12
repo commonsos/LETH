@@ -1,4 +1,4 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .factory('ENSService', function ($rootScope, $q, AppService) {    
     var contract; 
     var address;

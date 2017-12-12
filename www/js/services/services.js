@@ -1,4 +1,4 @@
-angular.module('leth.services', [])
+angular.module('podular.services', [])
 .service('BEService', function ($rootScope, $http, $window, $q, $ionicLoading) {
   return{
     storeData: function(guid,key,data){
@@ -131,7 +131,7 @@ angular.module('leth.services', [])
         method: 'GET',
         url: StoreEndpoint() + '/' + network + '/Store.json'
       }).then(function(response) {
-        q.resolve(response.data.dappleths);
+        q.resolve(response.data.dapppodulars);
       }, function(response) {
         q.reject(response);
       });

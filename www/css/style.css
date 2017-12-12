@@ -317,10 +317,10 @@ bottom: 150;
 
 /* 
   ==========================================================================
-   Bot Style Dappleth Templates
+   Bot Style Dapppodular Templates
   ========================================================================== 
 */
-.dappleth-title {
+.dapppodular-title {
   color: #fff;
   display: inherit;
   font-size: 17px;
@@ -328,7 +328,7 @@ bottom: 150;
   margin: 0 25px;
   width: 100%; }
 
-.has-dappleth {
+.has-dapppodular {
   top: 87px; }
 
 .bot-list {
@@ -413,24 +413,24 @@ bottom: 150;
   }
 
 
-  .item-dappleth .last-bot-timestamp {
+  .item-dapppodular .last-bot-timestamp {
     position: absolute;
     top: 16px;
     right: 38px;
     font-size: 14px;
     color: #9A9898; }
 
-  .dappleth  {
+  .dapppodular  {
     background-image: url(../img/chat-background.png);
     background-color: #E0DAD6;
     background-repeat: no-repeat;
     background-size: 100%; }
 
-  .footer-dappleth .item-input-wrapper {
+  .footer-dapppodular .item-input-wrapper {
     background-color: #FFF; }
-  .footer-dappleth .button.button-icon {
+  .footer-dapppodular .button.button-icon {
     margin: 0 10px; }
-  .footer-dappleth .buttons-seperator {
+  .footer-dapppodular .buttons-seperator {
     color: gray;
     font-size: 18px;
     line-height: 32px; }

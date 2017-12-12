@@ -1,4 +1,4 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .service('DappService', function ($rootScope, $http, $q, $timeout, 
                                 $ionicPopup, $ionicPlatform, $ionicLoading, $ionicSideMenuDelegate, 
                                 $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicActionSheet,

@@ -1,4 +1,4 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .factory('nfcService', function ($rootScope, $ionicPlatform) {
     var tagNFC = {};
 

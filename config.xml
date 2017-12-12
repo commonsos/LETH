@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.inzhoop.leth" version="0.26.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>LΞTH</name>
+<widget id="com.commonsos.podular" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Commons Podular</name>
   <description>
         The first Ethereum mobile wallet.
     </description>
-  <author email="ugo@inzhoop.com" href="http://www.inzhoop.com/">
+  <author email="j.kawasaki@commonsos.com" href="http://www.commonsos.com/">
       hacktar
     </author>
   <content src="index.html"/>

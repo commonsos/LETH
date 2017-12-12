@@ -1,4 +1,4 @@
-angular.module('leth.controllers')
+angular.module('podular.controllers')
 .controller('SettingsCtrl', function ($scope, $interval, $ionicModal, $ionicLoading, $ionicListDelegate, $ionicPopup, $timeout,$cordovaEmailComposer, $ionicActionSheet, $cordovaFile, $http, 
                                       $cordovaGeolocation,$translate, tmhDynamicLocale, availableLanguages, AppService, ExchangeService, Chat, PasswordPopup) {    
 
@@ -293,7 +293,7 @@ angular.module('leth.controllers')
 
   var importStorageWallet = function(){
     //show all value fileList[]
-    var keystoreFilename = "leth_keystore.json";
+    var keystoreFilename = "podular_keystore.json";
     if (AppService.isPlatformReady()){
       $cordovaFile.readAsText(cordova.file.dataDirectory, keystoreFilename)
         .then(function (success) {
@@ -325,7 +325,7 @@ angular.module('leth.controllers')
 
   var backupWalletToStorage = function(){
     //TODO: backup of localstorage.Enckeys
-    var keystoreFilename = "leth_keystore.json";
+    var keystoreFilename = "podular_keystore.json";
     if (AppService.isPlatformReady()){
       $cordovaFile.writeFile(cordova.file.dataDirectory,
              keystoreFilename,
@@ -447,7 +447,7 @@ angular.module('leth.controllers')
     PasswordPopup.open("Digit your wallet password", "unlock account to proceed").then(
       function (password) {
         if (AppService.isPlatformReady()){
-          var keystoreFilename = AppService.account() + "_lethKeystore.json";
+          var keystoreFilename = AppService.account() + "_podularKeystore.json";
           var directorySave=cordova.file.dataDirectory;
           var directoryAttach=cordova.file.dataDirectory.replace('file://','');
           
@@ -464,8 +464,8 @@ angular.module('leth.controllers')
                 var emailOpts = {
                   to: [''],
                   attachments: ['' + directoryAttach + keystoreFilename],
-                  subject: 'Backup LETH Wallet',
-                  body: 'A LETH backup wallet is attached.<br>powerd by Ethereum from <b>Inzhoop</b>',
+                  subject: 'Backup podular Wallet',
+                  body: 'A podular backup wallet is attached.<br>powerd by Ethereum from <b>Inzhoop</b>',
                   isHtml: true
                 };
 

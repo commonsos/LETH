@@ -1,5 +1,5 @@
-angular.module('leth') 
-.directive('dapplethTemplate', function($compile, $http){
+angular.module('podular') 
+.directive('dapppodularTemplate', function($compile, $http){
     return {
       restrict: "E",
       scope: true,
@@ -12,7 +12,7 @@ angular.module('leth')
       }
     };
   })
-  .directive('dapplethHeader', function($compile, $http){
+  .directive('dapppodularHeader', function($compile, $http){
     return {
       restrict: "E",
       scope: false,
@@ -26,7 +26,7 @@ angular.module('leth')
       }
     };
   })
-  .directive('dapplethNavbar', function($compile, $http){
+  .directive('dapppodularNavbar', function($compile, $http){
     return {
       restrict: "E",
       scope: false,
@@ -37,7 +37,7 @@ angular.module('leth')
       }
     };
   })
-  .directive('dapplethContent', function($compile, $http){
+  .directive('dapppodularContent', function($compile, $http){
     return {
       restrict: "E",
       scope: false,
@@ -48,7 +48,7 @@ angular.module('leth')
       }
     };
   })
-  .directive('dapplethChat', function($compile, $http){
+  .directive('dapppodularChat', function($compile, $http){
     return {
       restrict: "E",
       scope: false,
@@ -58,7 +58,7 @@ angular.module('leth')
       }
     };
   })
-  .directive('dapplethFooter', function($compile, $http){
+  .directive('dapppodularFooter', function($compile, $http){
     return {
       restrict: "E",
       scope: false,

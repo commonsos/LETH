@@ -1,16 +1,16 @@
 web3 = new Web3();
 hdPath = "m/44'/60'/0";
 hdPath2 = "m/44'/60'/0'/0";
-//StorePath = 'https://www.inzhoop.com/repository'; 
+//StorePath = 'https://www.commonsos.com/repository'; 
 
 StoreEndpoint = function(){
-  return typeof localStorage.StoreUrl == 'undefined' ? "https://www.inzhoop.com/repository" : localStorage.StoreUrl;
+  return typeof localStorage.StoreUrl == 'undefined' ? "https://www.commonsos.com/repository" : localStorage.StoreUrl;
 }
 
-var app = angular.module('leth', [
+var app = angular.module('podular', [
       'ionic', 'nfcFilters', 'ngTagsInput', 'angularLoad',
       'ionic.contrib.ui.cards', 'ngSanitize', 'ionic.service.core', 
-      'ngCordova', 'ja.qr', 'leth.controllers', 'leth.services',
+      'ngCordova', 'ja.qr', 'podular.controllers', 'podular.services',
       'ionic-lock-screen', 'pascalprecht.translate', 'tmh.dynamicLocale', 'openlayers-directive'])
   .constant('$ionicLoadingConfig', {
     template: 'Loading...'
@@ -87,7 +87,7 @@ var app = angular.module('leth', [
     localStorage.removeItem("Coins");
     localStorage.removeItem("listTokens");
 
-    if (typeof localStorage.StoreUrl == 'undefined') {localStorage.StoreUrl="https://www.inzhoop.com/repository";}
+    if (typeof localStorage.StoreUrl == 'undefined') {localStorage.StoreUrl="https://www.commonsos.com/repository";}
     if (typeof localStorage.Shh == 'undefined') {localStorage.Shh=JSON.stringify({ttl:10000, targetPow: 1.01, timePow: 19});}
     if (typeof localStorage.Language == 'undefined') {localStorage.Language=defaultLanguage.ISO;}
     if (typeof localStorage.Blacklist == 'undefined') {localStorage.Blacklist='[]';}
@@ -126,7 +126,7 @@ var app = angular.module('leth', [
       else {
         $rootScope.hasLogged = true; 
         localStorage.HasLogged = $rootScope.hasLogged;
-        $location.path('/tab/dappleths');
+        $location.path('/tab/dapppodulars');
     } 
 
     $ionicPlatform.ready(function () {
@@ -141,7 +141,7 @@ var app = angular.module('leth', [
         // gets page name from url
         var page =/.*:[/]{2}([^?]*)[?]?(.*)/.exec(event.detail.url)[1];
         // redirects to page specified in url
-        if(event.detail.url.split(':')[0] == "leth")
+        if(event.detail.url.split(':')[0] == "podular")
           $state.go('tab.wallet', {addr: page});
       }); 
 
@@ -207,22 +207,22 @@ var app = angular.module('leth', [
           }
         }
       })
-      .state('tab.dappleths', {
-        url: '/dappleths',
+      .state('tab.dapppodulars', {
+        url: '/dapppodulars',
         views: {
-          'dappleths': {
-            templateUrl: 'templates/dappleths.html',
-            controller: "DapplethsCtrl"
+          'dapppodulars': {
+            templateUrl: 'templates/dapppodulars.html',
+            controller: "DapppodularsCtrl"
           }
         }
       }) 
-      .state('tab.dappleth-run', {
+      .state('tab.dapppodular-run', {
         cache: false,
-        url: '/dappleth-run/:Id',
+        url: '/dapppodular-run/:Id',
         views: {
-          'dappleths': {
-            templateUrl: 'templates/dappleth-run.html',
-            controller: "DapplethRunCtrl"
+          'dapppodulars': {
+            templateUrl: 'templates/dapppodular-run.html',
+            controller: "DapppodularRunCtrl"
           }
         }
       })

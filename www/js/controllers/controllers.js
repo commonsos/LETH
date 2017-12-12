@@ -1,4 +1,4 @@
-angular.module('leth.controllers', [])
+angular.module('podular.controllers', [])
 .controller('AppCtrl', function ($ionicHistory, $interval, $scope, $rootScope, $ionicModal,  $cordovaDeviceMotion, $ionicPlatform, 
                                 $ionicPopup, $ionicTabsDelegate, $timeout, $cordovaBarcodeScanner, $state, 
                                 $ionicActionSheet, $cordovaEmailComposer, $cordovaContacts, $q, $ionicLoading, 
@@ -361,9 +361,9 @@ angular.module('leth.controllers', [])
      $scope.addrTo = friend.addr;
     if($ionicHistory.currentStateName()=="tab.address")
       $scope.shareByChat(friend, $scope.param);
-    if($ionicHistory.currentStateName()=="tab.dappleths")
+    if($ionicHistory.currentStateName()=="tab.dapppodulars")
       $scope.shareCustomToken(friend, $scope.param);
-    if($ionicHistory.currentStateName() == "tab.dappleth-run"){
+    if($ionicHistory.currentStateName() == "tab.dapppodular-run"){
       if($scope.param.action=="invite")
         $scope.inviteFriend(friend, $scope.param);
     }
@@ -676,7 +676,7 @@ angular.module('leth.controllers', [])
           $cordovaEmailComposer.isAvailable().then(function() {
             var emailOpts = {
               to: ['info@inzhoop.com'],
-              subject: 'Feedback  from LETH',
+              subject: 'Feedback  from podular',
               body: 'The user ' + $scope.account + ' said: ' +  mood,
               isHtml: true
             };
@@ -828,7 +828,7 @@ angular.module('leth.controllers', [])
               
               refresh();
               setChatFilter();
-              $state.go('tab.dappleths');
+              $state.go('tab.dapppodulars');
 
             });
 
@@ -1163,7 +1163,7 @@ angular.module('leth.controllers', [])
       $cordovaEmailComposer.isAvailable().then(function() {
       var emailOpts = {
         to: [''],
-        subject: 'Backup your Seed from LETH',
+        subject: 'Backup your Seed from podular',
         body: 'Please write it down on paper or in a password manager, you will need it to access your keystore. Do not let anyone see this seed or they can take your Ether.<br/><br/>' + $scope.randomSeed,
         isHtml: true
       };
@@ -1369,7 +1369,7 @@ angular.module('leth.controllers', [])
                 });
 
                 $scope.readCoinsList();
-                $state.go('tab.dappleths', { relative: $state.$current.view});
+                $state.go('tab.dapppodulars', { relative: $state.$current.view});
                }
             });
             break;
@@ -1497,7 +1497,7 @@ angular.module('leth.controllers', [])
     cordova.plugins.backgroundMode.onactivate = function() {
       console.log('backgroundMode activated');
       $scope.$on('incomingMessage', function (e, payload) {
-        var msg="new message on LETH";
+        var msg="new message on podular";
         if(payload.text.length)
           msg = $sce.trustAsHtml(payload.text);
         if(payload.image.length)

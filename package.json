@@ -1,7 +1,7 @@
 {
-  "name": "leth",
+  "name": "podular",
   "version": "0.7.0",
-  "description": "LETH: the 1st Eth mobile wallet",
+  "description": "podular: the 1st Eth mobile wallet",
   "dependencies": {
     "express": "^4.16.2",
     "gulp": "^3.5.6",
@@ -79,7 +79,7 @@
       "id": "cordova-plugin-customurlscheme",
       "locator": "cordova-plugin-customurlscheme",
       "variables": {
-        "URL_SCHEME": "leth"
+        "URL_SCHEME": "podular"
       }
     }
   ],

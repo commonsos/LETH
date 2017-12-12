@@ -1,4 +1,4 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .factory('SwarmService', function ($http, $q) {
   var PROVIDER = "http://swarm-gateways.net";
   var swarm;

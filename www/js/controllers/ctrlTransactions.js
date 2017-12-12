@@ -1,4 +1,4 @@
-angular.module('leth.controllers')
+angular.module('podular.controllers')
 .controller('TransactionCtrl', function ($scope, $ionicHistory, $state, $stateParams, $ionicPopup, $ionicListDelegate, Transactions) {
   
   /*

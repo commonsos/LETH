@@ -8,7 +8,7 @@ LΞTH (Ligth Ξthereum Mobile Wallet) is the first hybrid mobile app to manage a
 Thanks to the great job of library of ConsenSys (eth-lightwallet), the app could manage the key-pairs securely on smartphone side without send any password out of the wallet.
 Every transaction could be signed directly with the smartphone and sent to an ethereum node public/private.
 
-With LETH you could:
+With podular you could:
 
 - Create a HD ligthwallet 
 - Manage an Ethereum wallet address
@@ -25,11 +25,11 @@ With LETH you could:
 - Protect access with TouchID / PIN code
 - Currency convertion value via Kraken API
 - Add Custom Token and Share it with friends
-- Run DAppLeth (Decentralized external dapps embedded at runtime)
+- Run DApppodular (Decentralized external dapps embedded at runtime)
 
 # Beta Testers
 Become a BETA tester, install the App and help the community to grow up.
-Visit <a href="http://www.inzhoop.com">Inzhoop website</a>
+Visit <a href="http://www.commonsos.com">Inzhoop website</a>
 
 
 # References
@@ -51,7 +51,7 @@ sudo npm install -g cordova ionic
 
 Clone the project
 ```bash
-git clone https://github.com/inzhoop-co/LETH.git
+git clone https://github.com/inzhoop-co/podular.git
 ```
 
 Test on browser in localhost:8100
@@ -60,11 +60,11 @@ ionic serve
 ```
 
 # Screenshots
-<img src="https://www.inzhoop.com/img/screenshots/IMG_0010.PNG" width="30%">  <img src="https://www.inzhoop.com/img/screenshots/IMG_0011.PNG" width="30%">  <img src="https://www.inzhoop.com/img/screenshots/IMG_0012.PNG" width="30%">  
+<img src="https://www.commonsos.com/img/screenshots/IMG_0010.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0011.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0012.PNG" width="30%">  
 
-<img src="https://www.inzhoop.com/img/screenshots/IMG_0013.PNG" width="30%">  <img src="https://www.inzhoop.com/img/screenshots/IMG_0014.PNG" width="30%">  <img src="https://www.inzhoop.com/img/screenshots/IMG_0015.PNG" width="30%">
+<img src="https://www.commonsos.com/img/screenshots/IMG_0013.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0014.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0015.PNG" width="30%">
 
-<img src="https://www.inzhoop.com/img/screenshots/IMG_0016.PNG" width="30%">  <img src="https://www.inzhoop.com/img/screenshots/IMG_0017.PNG" width="30%">  <img src="https://www.inzhoop.com/img/screenshots/IMG_0018.PNG" width="30%">
+<img src="https://www.commonsos.com/img/screenshots/IMG_0016.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0017.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0018.PNG" width="30%">
 
 # License
  GNU GENERAL PUBLIC LICENSE 3.0

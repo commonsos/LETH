@@ -1,4 +1,4 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .factory('Transactions', function (Chat) {
   var transactions = [];
 

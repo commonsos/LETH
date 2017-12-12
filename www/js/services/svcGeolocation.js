@@ -1,4 +1,4 @@
-angular.module('leth.services')
+angular.module('podular.services')
 .factory('Geolocation', ['$q', function ($q) {
   var options = {
       timeout : 5000,

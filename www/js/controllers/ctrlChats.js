@@ -1,4 +1,4 @@
-angular.module('leth.controllers')  
+angular.module('podular.controllers')  
   .controller('ChatsCtrl', function ($scope, $ionicListDelegate, $ionicModal, $ionicActionSheet, $translate,
                                       $ionicScrollDelegate, $cordovaImagePicker, $cordovaCamera, $timeout, 
                                       Friends, Chat, AppService, Geolocation) {    
