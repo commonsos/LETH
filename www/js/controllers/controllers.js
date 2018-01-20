@@ -361,7 +361,7 @@ angular.module('podular.controllers', [])
      $scope.addrTo = friend.addr;
     if($ionicHistory.currentStateName()=="tab.address")
       $scope.shareByChat(friend, $scope.param);
-    if($ionicHistory.currentStateName()=="tab.dapppodulars")
+    if($ionicHistory.currentStateName()=="tab.dappleths")
       $scope.shareCustomToken(friend, $scope.param);
     if($ionicHistory.currentStateName() == "tab.dapppodular-run"){
       if($scope.param.action=="invite")
@@ -828,7 +828,7 @@ angular.module('podular.controllers', [])
               
               refresh();
               setChatFilter();
-              $state.go('tab.dapppodulars');
+              $state.go('tab.dappleths');
 
             });
 
@@ -1369,7 +1369,7 @@ angular.module('podular.controllers', [])
                 });
 
                 $scope.readCoinsList();
-                $state.go('tab.dapppodulars', { relative: $state.$current.view});
+                $state.go('tab.dappleths', { relative: $state.$current.view});
                }
             });
             break;

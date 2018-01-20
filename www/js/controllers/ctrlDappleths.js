@@ -1,5 +1,5 @@
 angular.module('podular.controllers')  
-  .controller('DapppodularsCtrl', function ($rootScope, $scope, $state, angularLoad, $ionicLoading, 
+  .controller('dapplethsCtrl', function ($rootScope, $scope, $state, angularLoad, $ionicLoading, 
                                           $ionicListDelegate, $ionicPopup, $timeout, $templateRequest, 
                                           $sce, $compile, $ionicSlideBoxDelegate, $http, 
                                           $cordovaInAppBrowser, AppService) {

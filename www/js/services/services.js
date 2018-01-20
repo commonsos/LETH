@@ -131,7 +131,7 @@ angular.module('podular.services', [])
         method: 'GET',
         url: StoreEndpoint() + '/' + network + '/Store.json'
       }).then(function(response) {
-        q.resolve(response.data.dapppodulars);
+        q.resolve(response.data.dappleths);
       }, function(response) {
         q.reject(response);
       });

@@ -1,7 +1,7 @@
 web3 = new Web3();
 hdPath = "m/44'/60'/0";
 hdPath2 = "m/44'/60'/0'/0";
-//StorePath = 'https://www.commonsos.com/repository'; 
+//StorePath = 'https://www.commonsos.com/repository';
 
 StoreEndpoint = function(){
   return typeof localStorage.StoreUrl == 'undefined' ? "https://www.commonsos.com/repository" : localStorage.StoreUrl;
@@ -9,7 +9,7 @@ StoreEndpoint = function(){
 
 var app = angular.module('podular', [
       'ionic', 'nfcFilters', 'ngTagsInput', 'angularLoad',
-      'ionic.contrib.ui.cards', 'ngSanitize', 'ionic.service.core', 
+      'ionic.contrib.ui.cards', 'ngSanitize', 'ionic.service.core',
       'ngCordova', 'ja.qr', 'podular.controllers', 'podular.services',
       'ionic-lock-screen', 'pascalprecht.translate', 'tmh.dynamicLocale', 'openlayers-directive'])
   .constant('$ionicLoadingConfig', {
@@ -24,26 +24,26 @@ var app = angular.module('podular', [
   .provider('renameDirective', ['$provide' , '$compileProvider' , function($provide, $compileProvider){
     //that's provider could rename directive using decorator
     var directiveSet;
- 
+
     this.setConfig = function setConfig(config){
       directiveSet = config;
-       
+
        angular.forEach(directiveSet, function iterator(targetDir, sourceDir){
           sourceDir +=  'Directive';
           //Set up decorators
           $provide.decorator(sourceDir, function decorate($delegate){
-            
+
              $compileProvider.directive(targetDir, function(){
               return $delegate[0];
              });
-             
+
               return function() { return angular.noop };
           });
       });
     };
 
     this.$get  = ['$injector', function renameDirectiveService($injector){
-      return { 
+      return {
         rename : function rename(){
           angular.forEach(directiveSet, function(_,dir){
              var sourceDir = dir + 'Directive';
@@ -54,7 +54,7 @@ var app = angular.module('podular', [
     }];
   }])
   .run(function (renameDirective,$ionicPlatform, $rootScope, $ionicLoading, $ionicScrollDelegate,
-                $lockScreen,$state,$window, $location, availableLanguages, defaultLanguage, 
+                $lockScreen,$state,$window, $location, availableLanguages, defaultLanguage,
                 $translate, $locale, $cordovaNetwork, $cordovaGlobalization, tmhDynamicLocale ) {
 
     function getSuitableLanguage(language) {
@@ -107,8 +107,8 @@ var app = angular.module('podular', [
     if (typeof localStorage.HostsList == 'undefined') {
       localStorage.HostsList=JSON.stringify(["http://wallet.inzhoop.com:8546","http://wallet.inzhoop.com:8545"]);
     }
-    
-    if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'EUR', symbol:'€', value: 'ZEUR'});}      
+
+    if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'EUR', symbol:'€', value: 'ZEUR'});}
     if(localStorage.PinOn=="true"){
       $lockScreen.show({
         code: JSON.parse(localStorage.AppCode).code,
@@ -120,18 +120,18 @@ var app = angular.module('podular', [
     }
     if (typeof localStorage.AppKeys == 'undefined') {
         $rootScope.hasLogged = false;
-        localStorage.HasLogged = $rootScope.hasLogged;          
+        localStorage.HasLogged = $rootScope.hasLogged;
         $location.path('/tab/login');
       }
       else {
-        $rootScope.hasLogged = true; 
+        $rootScope.hasLogged = true;
         localStorage.HasLogged = $rootScope.hasLogged;
-        $location.path('/tab/dapppodulars');
-    } 
+        $location.path('/tab/dappleths');
+    }
 
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.disableScroll(true);   
+        cordova.plugins.Keyboard.disableScroll(true);
       }
       if (window.StatusBar) {
         StatusBar.styleLightContent();
@@ -143,7 +143,7 @@ var app = angular.module('podular', [
         // redirects to page specified in url
         if(event.detail.url.split(':')[0] == "podular")
           $state.go('tab.wallet', {addr: page});
-      }); 
+      });
 
       $rootScope.online = navigator.onLine;
       $window.addEventListener("offline", function() {
@@ -158,10 +158,10 @@ var app = angular.module('podular', [
         });
       }, false);
 
-      document.addEventListener("deviceready", function () {  
-          $rootScope.deviceReady = true;  
+      document.addEventListener("deviceready", function () {
+          $rootScope.deviceReady = true;
 
-      }, false);     
+      }, false);
 
     });
   })
@@ -197,30 +197,30 @@ var app = angular.module('podular', [
         url: '/tab',
         abstract: true,
         templateUrl: 'templates/tabs.html',
-        controller: 'AppCtrl'  
+        controller: 'AppCtrl'
       })
       .state('tab.login', {
         url: '/login',
         views: {
           'login': {
-            templateUrl: 'templates/login.html'          
+            templateUrl: 'templates/login.html'
           }
         }
       })
-      .state('tab.dapppodulars', {
-        url: '/dapppodulars',
+      .state('tab.dappleths', {
+        url: '/dappleths',
         views: {
-          'dapppodulars': {
-            templateUrl: 'templates/dapppodulars.html',
-            controller: "DapppodularsCtrl"
+          'dappleths': {
+            templateUrl: 'templates/dappleths.html',
+            controller: "dapplethsCtrl"
           }
         }
-      }) 
+      })
       .state('tab.dapppodular-run', {
         cache: false,
         url: '/dapppodular-run/:Id',
         views: {
-          'dapppodulars': {
+          'dappleths': {
             templateUrl: 'templates/dapppodular-run.html',
             controller: "DapppodularRunCtrl"
           }
@@ -261,7 +261,7 @@ var app = angular.module('podular', [
             controller: 'TransactionCtrl'
           }
         }
-      })     
+      })
       .state('tab.wallet', {
         url: '/wallet/:addr',
         views: {
@@ -342,7 +342,7 @@ var app = angular.module('podular', [
             controller: 'SettingsCtrl'
           }
         }
-      })  
+      })
       ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab');
@@ -368,8 +368,8 @@ var app = angular.module('podular', [
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
   })
   .config(function( $controllerProvider, $provide, $compileProvider ) {
-    // Since the "shorthand" methods for component 
-    // definitions are no longer valid, we can just 
+    // Since the "shorthand" methods for component
+    // definitions are no longer valid, we can just
     // override them to use the providers for post-
     // bootstrap loading.
     //console.log( "Config method executed." );
@@ -409,5 +409,3 @@ var app = angular.module('podular', [
       window.dispatchEvent(event);
     }, 0);
   }
-
-  
