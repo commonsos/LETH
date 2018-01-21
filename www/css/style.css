@@ -14,9 +14,9 @@ img#headerSetting
 .no-bmp
 {
   border: 0px !important;
-  margin: 0px !important; 
+  margin: 0px !important;
   padding: 0px !important;
- 
+
 }
 .relative-position
 {
@@ -25,7 +25,7 @@ img#headerSetting
  right:0px !important;
  /* margin: 0px;*/
  max-width: 65px;
-  
+
 }
 .full-width
 {
@@ -37,7 +37,7 @@ img#headerSetting
   padding-left: 16px !important;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-  
+
 }
 
 
@@ -86,24 +86,24 @@ img#headerSetting
 }
 
 
-/* 
+/*
   ==========================================================================
    Font Awesome Style
-  ========================================================================== 
+  ==========================================================================
 */
 
 .scrollBg {
   background-color: #efeff4; }
 
-body.keyboard-open .has-footer{ 
+body.keyboard-open .has-footer{
 bottom: 150;
 }
 
 
-/* 
+/*
   ==========================================================================
    Font Awesome Style
-  ========================================================================== 
+  ==========================================================================
 */
 
 @font-face {
@@ -192,10 +192,10 @@ bottom: 150;
     line-height: 0px;
     vertical-align: sub;
 }
-/* 
+/*
   ==========================================================================
    Chat Message Style
-  ========================================================================== 
+  ==========================================================================
 */
 
 .has-chat-header {
@@ -266,10 +266,10 @@ bottom: 150;
   }
   .bubble-other .message{
 
-  } 
+  }
 
   .bubble-other .image {
-    
+
   }
 
 
@@ -303,7 +303,7 @@ bottom: 150;
     background-image: url(../img/backgrounds/xmas.png);
     background-color: #E0DAD6;
     background-repeat: no-repeat;
-    background-size: 100%; 
+    background-size: 100%;
     height: 300px;}
 
   .footer-chat .item-input-wrapper {
@@ -315,10 +315,10 @@ bottom: 150;
     font-size: 18px;
     line-height: 32px; }
 
-/* 
+/*
   ==========================================================================
    Bot Style Dapppodular Templates
-  ========================================================================== 
+  ==========================================================================
 */
 .dapppodular-title {
   color: #fff;
@@ -393,10 +393,10 @@ bottom: 150;
   }
   .botbubble-other .bot{
 
-  } 
+  }
 
   .botbubble-other .botimage {
-    
+
   }
 
 
@@ -436,10 +436,10 @@ bottom: 150;
     line-height: 32px; }
 
 
-/* 
+/*
   ==========================================================================
    Image viewer style
-  ========================================================================== 
+  ==========================================================================
 */
   .transparent {
     background: transparent !important;
@@ -477,10 +477,10 @@ bottom: 150;
 
 
 
-/* 
+/*
   ==========================================================================
    Horizontal List
-  ========================================================================== 
+  ==========================================================================
 */
 
 
@@ -562,10 +562,10 @@ bottom: 150;
 
 }
 
-/* 
+/*
   ==========================================================================
    Step Start styles
-  ========================================================================== 
+  ==========================================================================
 */
 
 .stepContainer {
@@ -578,10 +578,11 @@ bottom: 150;
 }
 
 .start{
-  background-color: #ef473a !important;}
+  /* background-color: #ef473a !important;*/
+}
 
 .startPage {
-  background-color: #ef473a !important;
+  /* background-color: #ef473a !important; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -595,10 +596,10 @@ bottom: 150;
   padding: 60px 20px;
 }
 
-/* 
+/*
   ==========================================================================
    Other styles
-  ========================================================================== 
+  ==========================================================================
 */
 
 .blinking {
@@ -655,4 +656,3 @@ bottom: 150;
   margin-bottom: 5px;
   height: 10px;
 }
-
