@@ -102,10 +102,10 @@ var app = angular.module('podular', [
     if (typeof localStorage.Transactions == 'undefined') {localStorage.Transactions = '[]';}
     if (typeof localStorage.Tokens == 'undefined') {localStorage.Tokens = '[]';}
     if (typeof localStorage.NodeHost == 'undefined') {
-      localStorage.NodeHost = "http://wallet.inzhoop.com:8546";
+      localStorage.NodeHost = "http://54.95.150.65:8545";
     }
     if (typeof localStorage.HostsList == 'undefined') {
-      localStorage.HostsList=JSON.stringify(["http://wallet.inzhoop.com:8546","http://wallet.inzhoop.com:8545"]);
+      localStorage.HostsList=JSON.stringify(["http://54.95.150.65:8545","http://54.95.150.65:8545"]);
     }
 
     if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'EUR', symbol:'€', value: 'ZEUR'});}
