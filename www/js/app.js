@@ -4,7 +4,7 @@ hdPath2 = "m/44'/60'/0'/0";
 //StorePath = 'https://www.commonsos.com/repository';
 
 StoreEndpoint = function(){
-  return typeof localStorage.StoreUrl == 'undefined' ? "https://www.commonsos.com/repository" : localStorage.StoreUrl;
+  return typeof localStorage.StoreUrl == 'undefined' ? "https://commons-store.herokuapp.com" : localStorage.StoreUrl;
 }
 
 var app = angular.module('podular', [
@@ -87,7 +87,7 @@ var app = angular.module('podular', [
     localStorage.removeItem("Coins");
     localStorage.removeItem("listTokens");
 
-    if (typeof localStorage.StoreUrl == 'undefined') {localStorage.StoreUrl="https://www.commonsos.com/repository";}
+    if (typeof localStorage.StoreUrl == 'undefined') {localStorage.StoreUrl="https://commons-store.herokuapp.com";}
     if (typeof localStorage.Shh == 'undefined') {localStorage.Shh=JSON.stringify({ttl:10000, targetPow: 1.01, timePow: 19});}
     if (typeof localStorage.Language == 'undefined') {localStorage.Language=defaultLanguage.ISO;}
     if (typeof localStorage.Blacklist == 'undefined') {localStorage.Blacklist='[]';}
