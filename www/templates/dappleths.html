@@ -65,19 +65,19 @@
             <i class="icon ion-ios-circle-outline positive" ng-show="!coin.Installed && coin.Custom && !coin.Progress" ng-click="installCoin(coin)"></i>
             <ion-option-button style="padding-top: 40px; font-size: 12px;" class="button-energized" ng-show="coin.Custom" ng-click="openFriendsModal(coin)">
               <i class="icon ion-share"></i>
-              <span>Share</span>
+              <span>シェア</span>
             </ion-option-button>
             <ion-option-button style="padding-top: 40px; font-size: 12px;" class="button-assertive" ng-show="coin.Installed" ng-click="uninstallCoin(coin)">
               <i class="icon ion-ios-trash-outline"></i>
-              <span>Unset</span>
+              <span>解除</span>
             </ion-option-button>
             <ion-option-button style="padding-top: 40px; font-size: 12px;" class="button-dark" ng-show="coin.Custom" ng-click="removeCustomToken(coin)">
               <i class="icon ion-backspace-outline"></i>
-              <span>Delete</span>
+              <span>削除</span>
             </ion-option-button>
       </ion-item>
       <ion-item class="item item-avatar-left item-icon-right" ng-click="loadCustomToken()">
-            <img ng-src="img/eth_coin.png"/>
+            <img ng-src="img/com-coin.png"/>
             <h2>{{'CUSTOM_TOKEN' | translate}}</h2>
             <p>{{'ADD_CUSTOM_TOKEN' | translate}}</p>
             <i class="icon ion-ios-plus-outline positive"></i>

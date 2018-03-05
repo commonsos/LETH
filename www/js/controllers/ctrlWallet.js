@@ -1,6 +1,6 @@
 angular.module('podular.controllers')
-  .controller('WalletCtrl', function ($scope, $rootScope, $stateParams, $ionicLoading, $ionicModal, $state, 
-                                      $ionicPopup, $cordovaBarcodeScanner, $ionicActionSheet, 
+  .controller('WalletCtrl', function ($scope, $rootScope, $stateParams, $ionicLoading, $ionicModal, $state,
+                                      $ionicPopup, $cordovaBarcodeScanner, $ionicActionSheet,
                                       $timeout, ENSService, AppService, Transactions,ExchangeService, Chat) {
     var TrueException = {};
     var FalseException = {};
@@ -8,26 +8,26 @@ angular.module('podular.controllers')
     var setCoin = function(index){
       if(index==0){
         $scope.idCoin = 0;
-        $scope.logoCoin = "img/ethereum-icon.png";
-        $scope.descCoin = "Eth from main wallet";
+        $scope.logoCoin = "img/com-icon.png";
+        $scope.descCoin = "COMの残高";
         if($scope.nameNetwork=="Main-ETC"){
-          $scope.symbolCoin = "ΞC";
-          $scope.xCoin = "XETC";                  
+          $scope.symbolCoin = "COM";
+          $scope.xCoin = "XETC";
         }else{
-          $scope.symbolCoin = "Ξ";
-          $scope.xCoin = "XETH";                  
+          $scope.symbolCoin = "COM";
+          $scope.xCoin = "XETH";
         }
         $scope.decimals = "6";
         $scope.listUnit = [
-    			{multiplier: "1.0e18", unitName: "ether"},
-    			{multiplier: "1.0e15", unitName: "finney"}
+    			{multiplier: "1.0e18", unitName: "com"},
+    			{multiplier: "1.0e15", unitName: "moc"}
           //,{multiplier: "1.0e12",unitName: "szabo"}
     		];
         $scope.unit = $scope.listUnit[0].multiplier;
         $scope.balance = AppService.balance($scope.unit);
         if($scope.addrTo!=undefined)
           $scope.balAddrTo = parseFloat(web3.eth.getBalance($scope.addrTo))/$scope.unit;
-        $scope.symbolFee = $scope.symbolCoin;        
+        $scope.symbolFee = $scope.symbolCoin;
       }
       else {
     		var activeCoins=$scope.listTokens.filter( function(obj) {return obj.Installed ;} );
@@ -36,7 +36,7 @@ angular.module('podular.controllers')
         $scope.descCoin = activeCoins[index-1].Abstract;
         $scope.symbolCoin = activeCoins[index-1].Symbol;
         $scope.decimals = activeCoins[index-1].Decimals;
-        $scope.xCoin = activeCoins[index-1].Exchange;          
+        $scope.xCoin = activeCoins[index-1].Exchange;
         $scope.methodSend = activeCoins[index-1].Send;
         $scope.contractCoin = web3.eth.contract(activeCoins[index-1].ABI).at(activeCoins[index-1].Address);
     		$scope.listUnit = activeCoins[index-1].Units;
@@ -46,7 +46,7 @@ angular.module('podular.controllers')
           $scope.balAddrTo = AppService.balanceOfUser($scope.contractCoin,$scope.unit + 'e+' + $scope.decimals,$scope.addrTo);
 
       }
-      
+
       updateExchange();
     }
 
@@ -65,11 +65,11 @@ angular.module('podular.controllers')
 
     $scope.$on('$ionicView.enter', function() {
       $rootScope.hideTabs = ''; //patch
-      if($scope.idCoin==0 || $scope.idCoin==undefined)    
+      if($scope.idCoin==0 || $scope.idCoin==undefined)
         $scope.balance = AppService.balance($scope.unit);
       else
         $scope.balance = AppService.balanceOf($scope.contractCoin,$scope.unit + 'e+' + $scope.decimals);
-    
+
       $scope.minFee = 371007000000000;
       $scope.maxFee = 11183211000000000;
       $scope.step = 344506500000000;
@@ -98,13 +98,13 @@ angular.module('podular.controllers')
       //if contact link
       if($scope.addrKey && $scope.isFriend()==""){
           $scope.openSaveAddressModal($scope.addrTo,"from share",$scope.addrTo,$scope.addrKey);
-      } 
+      }
 
       if($scope.idCoin==0 || $scope.idCoin==undefined)
         $scope.balAddrTo = parseFloat(web3.eth.getBalance($scope.addrTo))/$scope.unit;
       else
         $scope.balAddrTo = AppService.balanceOfUser($scope.contractCoin,$scope.unit,$scope.addrTo);
-    }else { 
+    }else {
       $scope.fromAddressBook = false;
     }
 
@@ -115,7 +115,7 @@ angular.module('podular.controllers')
     $scope.sendCoins = function (addr, amount, unit, idCoin) {
       if(typeof addr.split('.')[1] != 'undefined' && addr.split('.')[1]==ENSService.suffix){
         addr = ENSService.getAddress(addr);
-      } 
+      }
 
       var value = parseFloat(amount) * unit;
       if( $scope.idCoin!=0){
@@ -143,7 +143,7 @@ angular.module('podular.controllers')
               //save transaction
               var newT = {from: $scope.account, to: addr, id: result[1], value: value, unit: unit, symbol: $scope.symbolCoin, time: new Date().getTime()};
               $scope.transactions = Transactions.add(newT);
-              Chat.sendTransactionNote(newT);              
+              Chat.sendTransactionNote(newT);
               refresh();
             }
           },
@@ -180,13 +180,13 @@ angular.module('podular.controllers')
               });
               successPopup.then(function (res) {
                 $ionicLoading.hide();
-                
+
                 $state.go('tab.transall');
               });
               //save transaction
               var newT = {from: $scope.account, to: addr, id: result[1], value: value, unit: unit, symbol: $scope.symbolCoin, time: new Date().getTime()};
               $scope.transactions = Transactions.add(newT);
-              Chat.sendTransactionNote(newT);              
+              Chat.sendTransactionNote(newT);
               refresh();
             }
           },
@@ -210,7 +210,7 @@ angular.module('podular.controllers')
       if($scope.idCoin==0)
         unit = $scope.unit;
 
-        
+
 
       $scope.feeLabel = $scope.fee  / unit;
     }
@@ -223,7 +223,7 @@ angular.module('podular.controllers')
       $scope.balance = AppService.balance(unt[0].multiplier);
       $scope.symbolCoin = unt[0].unitName;
       $scope.unit = unt[0].multiplier;
-  
+
       if($scope.idCoin==0){
         $scope.feeLabel = $scope.fee  / $scope.unit;
         $scope.symbolFee = $scope.symbolCoin;
@@ -237,7 +237,7 @@ angular.module('podular.controllers')
       }
       var receiver = addr + " " + addrEns;
       var total = parseFloat(amount);
-      var unit = $scope.unit;  
+      var unit = $scope.unit;
       if($scope.idCoin==0){
         var valueFee = parseFloat($scope.fee / unit);
         total = parseFloat(amount + valueFee) ;
@@ -256,7 +256,7 @@ angular.module('podular.controllers')
         }
       });
     };
-    
+
     $scope.checkAddress = function (address) {
       try {
         angular.forEach(this.friends, function(value, key) {
@@ -279,8 +279,8 @@ angular.module('podular.controllers')
       $scope.fromAddressBook = false;
     }
 
-    $scope.chooseCoin = function(){  
-      var buttonsGroup = [{text: '<span style="text-align:left"><img width="30px" heigth="30px" src="img/ethereum-icon.png"/> Ether [Ξ]</span>'}];
+    $scope.chooseCoin = function(){
+      var buttonsGroup = [{text: '<span style="text-align:left"><img width="30px" heigth="30px" src="img/com-icon.png"/> COM </span>'}];
 
 	   var activeCoins=$scope.listTokens.filter( function(obj) {return obj.Installed;} );
       for (var i = 0; i < activeCoins.length; i++) {

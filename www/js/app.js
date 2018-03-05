@@ -109,7 +109,7 @@ var app = angular.module('podular', [
       localStorage.HostsList=JSON.stringify(["http://54.95.150.65:8545","http://54.95.150.65:8545"]);
     }
 
-    if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'JPY', symbol:'¥', value: 'JPY'});}
+    if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'JPY', symbol:'¥', value: 'ZJPY'});}
     if(localStorage.PinOn=="true"){
       $lockScreen.show({
         code: JSON.parse(localStorage.AppCode).code,
@@ -222,7 +222,7 @@ var app = angular.module('podular', [
         url: '/dapppodular-run/:Id',
         views: {
           'dappleths': {
-            templateUrl: 'templates/dapppodular-run.html',
+            templateUrl: 'templates/dappleth-run.html',
             controller: "DapppodularRunCtrl"
           }
         }

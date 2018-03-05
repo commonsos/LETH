@@ -4,14 +4,14 @@
   	<ion-scroll class="list scrollBg" overflow-scroll="true" >
    	 	<div class="padding subdued">{{'HOST_PROVIDER_ADDRESS' | translate}}  </div>
 		<ion-item class="item">
-            {{'HOST_TYPE' | translate}} 
+            {{'HOST_TYPE' | translate}}
 			<span class="item-note">{{nameNetwork}} #{{lastBlock}} </span>
-      	</ion-item>		
+      	</ion-item>
 
 		<ion-item class="item item-icon-right" href="#/tab/hostnodes">
             {{addrHost}}
 		     <i class="icon ion-chevron-right icon-accessory"></i>
-      	</ion-item>		
+      	</ion-item>
 		<div class="padding subdued">{{'BACKUP' | translate}}</div>
 		<div class="item item-button-right">
 		    {{'BACKUP_WALLET' | translate}}
@@ -29,44 +29,44 @@
 	    <ion-toggle  ng-model="pin.checked" ng-checked="pin.checked">
 			{{'PIN_ENABLE' | translate}}
 		</ion-toggle>
-	    <ion-toggle  ng-model="touch.checked" ng-checked="touch.checked" ng-if="isIOS()">
-			{{'TOUCHID' | translate}} 
-		</ion-toggle>
+	    <!-- <ion-toggle  ng-model="touch.checked" ng-checked="touch.checked" ng-if="isIOS()">
+			{{'TOUCHID' | translate}}
+		</ion-toggle> -->
 		<!-- temporary disabled used to encrypt
 		<div class="item item-button-right">
 		    Change PIN code
 		    <button class="button button-clear" ng-click="openChangeCodeModal()">
 		        <i class="icon ion-lock-combination"></i>
 		    </button>
-		</div> 
+		</div>
 		-->
 		<div class="padding subdued">{{'BANNED_USERS' | translate}} <i class="ion-android-hand"></i></div>
 		<ion-item class="item item-icon-right" href="#/tab/blacklist">
-            {{'MANAGE_BLACKLIST' | translate}} 
+            {{'MANAGE_BLACKLIST' | translate}}
 			 <span class="badge badge-stable" ng-show="blacklisted.length>0">{{blacklisted.length}}</span>
 		     <i class="icon ion-chevron-right icon-accessory"></i>
       	</ion-item>
 		<div class="padding subdued">{{'LANGUAGES' | translate}} <i class="ion-earth"></i></div>
 		<ion-item class="item item-icon-right" href="#/tab/languages">
-            {{'SET_LANGUAGES' | translate}} 
+            {{'SET_LANGUAGES' | translate}}
 			 <span class="item-note ">{{language}}</span>
 		     <i class="icon ion-chevron-right icon-accessory"></i>
       	</ion-item>
 		<div class="padding subdued">{{'ACTIVITY' | translate}}</div>
-		<ion-toggle  ng-model="backmode.checked" ng-checked="backmode.checked">
-			{{'BACKGROUND_MODE' | translate}} 
-		</ion-toggle>
-		<ion-toggle  ng-model="vibration.checked" ng-checked="vibration.checked">
-			{{'VIBRATE_NOTIFICATION' | translate}} 
-		</ion-toggle>
-		<div class="padding subdued" ng-if="nfcAvailable">{{'COMMUNICATION' | translate}}</div>
+		<!-- <ion-toggle  ng-model="backmode.checked" ng-checked="backmode.checked">
+			{{'BACKGROUND_MODE' | translate}}
+		</ion-toggle> -->
+		<!-- <ion-toggle  ng-model="vibration.checked" ng-checked="vibration.checked">
+			{{'VIBRATE_NOTIFICATION' | translate}}
+		</ion-toggle> -->
+		<!-- <div class="padding subdued" ng-if="nfcAvailable">{{'COMMUNICATION' | translate}}</div>
 	    <ion-toggle  ng-model="nfc.checked" ng-checked="nfc.checked" ng-if="nfcAvailable">
 			{{'NFC_SENSOR' | translate}}
-		</ion-toggle>
-		<div class="padding subdued">{{'GEOLOCATION' | translate}}</div>
+		</ion-toggle> -->
+		<!-- <div class="padding subdued">{{'GEOLOCATION' | translate}}</div>
 	    <ion-toggle  ng-model="geo.checked" ng-checked="geo.checked">
 			{{lat}}   {{long}}
-		</ion-toggle>
+		</ion-toggle> -->
 		<div class="padding subdued">{{'EXCHANGE' | translate}}</div>
 		<ion-item class="item item-icon-right" href="#/tab/currencies">
 			{{'BASE_CURRENCY' | translate}}
@@ -78,7 +78,7 @@
 			{{'ADVANCED_SETTINGS' | translate}}
 		     <i class="icon ion-chevron-right icon-accessory"></i>
       	</ion-item>
-			
+
 		<div class="divider padding" align="center">
 			<p><img ng-src="img/inzhoop.png" id="headerSetting"></p>
 			<p>LΞTH v.0.26.13
@@ -86,7 +86,7 @@
 https://www.inzhoop.com/download/ios/manifest.plist">(update)</a>
 			</p>
 			<p><a href="#" onclick="window.open('https://github.com/inzhoop-co/LETH/blob/master/LICENSE','_blank','location=yes','closebuttoncaption=Return');">GPL-3.0 License</a></p>
-		</div>		
+		</div>
 	</ion-scroll>
   </ion-content>
 </ion-view>
