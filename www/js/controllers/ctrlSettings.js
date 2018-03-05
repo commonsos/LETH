@@ -1,6 +1,6 @@
 angular.module('podular.controllers')
-.controller('SettingsCtrl', function ($scope, $interval, $ionicModal, $ionicLoading, $ionicListDelegate, $ionicPopup, $timeout,$cordovaEmailComposer, $ionicActionSheet, $cordovaFile, $http, 
-                                      $cordovaGeolocation,$translate, tmhDynamicLocale, availableLanguages, AppService, ExchangeService, Chat, PasswordPopup) {    
+.controller('SettingsCtrl', function ($scope, $interval, $ionicModal, $ionicLoading, $ionicListDelegate, $ionicPopup, $timeout,$cordovaEmailComposer, $ionicActionSheet, $cordovaFile, $http,
+                                      $cordovaGeolocation,$translate, tmhDynamicLocale, availableLanguages, AppService, ExchangeService, Chat, PasswordPopup) {
 
   $scope.hostsList= JSON.parse(localStorage.HostsList);
   $scope.pin = { checked: (localStorage.PinOn=="true") };
@@ -52,7 +52,7 @@ angular.module('podular.controllers')
   var setGeo = function(value){
     localStorage.GeoOn = value? "true":"false";
     $scope.geo = { checked: value};
-    if(value){   
+    if(value){
       if (AppService.isPlatformReady()){
         $cordovaGeolocation
           .getCurrentPosition()
@@ -70,7 +70,7 @@ angular.module('podular.controllers')
         };
       }
     else if($scope.geoWatch!=undefined){
-      $scope.geoWatch.clearWatch();        
+      $scope.geoWatch.clearWatch();
     }
   };
 
@@ -129,7 +129,7 @@ angular.module('podular.controllers')
   };
 
   $scope.setCurrency = function(currency){
-    localStorage.BaseCurrency =  JSON.stringify(currency); 
+    localStorage.BaseCurrency =  JSON.stringify(currency);
     $scope.baseCurrency = JSON.parse(localStorage.BaseCurrency);
   };
 
@@ -140,17 +140,17 @@ angular.module('podular.controllers')
     });
     confirmPopup.then(function (res) {
       if (res) {
-        localStorage.StoreUrl = addr; 
+        localStorage.StoreUrl = addr;
         var alertPopup = $ionicPopup.show({
             title: 'Store changed',
-            template: 'Url Store updated to ' + addr   
+            template: 'Url Store updated to ' + addr
           });
 
           alertPopup.then(function(res) {
             refresh();
             alertPopup.close();
           });
-        
+
           $timeout(function() {
             refresh();
             alertPopup.close();
@@ -166,7 +166,7 @@ angular.module('podular.controllers')
     });
     confirmPopup.then(function (res) {
       if (res) {
-        resetChatFilter(); 
+        resetChatFilter();
         AppService.setWeb3ProviderNode(global_keystore, addr).then(function(res){
           localStorage.NodeHost = addr;
           $scope.addrHost = localStorage.NodeHost;
@@ -175,7 +175,7 @@ angular.module('podular.controllers')
             $scope.hostsList.push(addr);
             localStorage.HostsList=JSON.stringify($scope.hostsList);
           }
-          setChatFilter();    
+          setChatFilter();
           refresh();
           console.log('provider host update to: ' + addr);
 
@@ -186,7 +186,7 @@ angular.module('podular.controllers')
             template: addr + ' is unvailable, previous host will be restored'
           });
           AppService.setWeb3Provider(global_keystore);
-          setChatFilter();    
+          setChatFilter();
           refresh();
         });
       } else {
@@ -201,14 +201,14 @@ angular.module('podular.controllers')
       template: 'Are you sure you want to delete the provider host? '
     });
     confirmPopup.then(function (res) {
-      if (res) 
+      if (res)
       {
   		  if($scope.hostsList.length>1 ) {
           var iHost = index; //$scope.hostsList.indexOf(addr);
   			  $scope.hostsList.splice(iHost,1);
   			  localStorage.HostsList=JSON.stringify($scope.hostsList);
   			  AppService.setWeb3Provider(global_keystore);
-          $scope.addrHost = localStorage.NodeHost;                     
+          $scope.addrHost = localStorage.NodeHost;
   			  refresh();
   				console.log('provider deleted');
   		  }
@@ -223,7 +223,7 @@ angular.module('podular.controllers')
         console.log('provider host not deleted');
       }
     });
-    
+
     $ionicListDelegate.closeOptionButtons();
 
   };
@@ -307,7 +307,7 @@ angular.module('podular.controllers')
           localStorage.AppKeys = JSON.stringify({data: global_keystore.serialize()});
 
           refresh();
- 
+
           var alertPopup = $ionicPopup.alert({
             title: 'Restore Wallet',
             template: 'Wallet restored successfully!'
@@ -358,14 +358,14 @@ angular.module('podular.controllers')
 
           $ionicLoading.hide();
 
-          alertPopup.then(function(res) {    
+          alertPopup.then(function(res) {
             console.log('seed backuped');
           });
         });
       },
       function (err) {
         $ionicLoading.hide();
-      })      
+      })
   }
 
   var backupPrivateKey = function(){
@@ -380,14 +380,14 @@ angular.module('podular.controllers')
 
           $ionicLoading.hide();
 
-          alertPopup.then(function(res) {    
+          alertPopup.then(function(res) {
             console.log('pvtKey backuped');
           });
         });
       },
       function (err) {
         $ionicLoading.hide();
-      })      
+      })
   }
 
 
@@ -439,18 +439,18 @@ angular.module('podular.controllers')
   $scope.saveSettings = function(set){
     var newSet = {ttl:set.ttl, targetPow: set.targetPow, timePow: set.timePow}
     localStorage.Shh = JSON.stringify(newSet);
-    
+
   };
 
   var walletViaEmail = function(){
-    //backup keys wallet via email 
+    //backup keys wallet via email
     PasswordPopup.open("Digit your wallet password", "unlock account to proceed").then(
       function (password) {
         if (AppService.isPlatformReady()){
           var keystoreFilename = AppService.account() + "_podularKeystore.json";
           var directorySave=cordova.file.dataDirectory;
           var directoryAttach=cordova.file.dataDirectory.replace('file://','');
-          
+
           if(ionic.Platform.isAndroid()) {
             directorySave = cordova.file.externalDataDirectory;
             directoryAttach = cordova.file.externalDataDirectory;
@@ -465,7 +465,7 @@ angular.module('podular.controllers')
                   to: [''],
                   attachments: ['' + directoryAttach + keystoreFilename],
                   subject: 'Backup podular Wallet',
-                  body: 'A podular backup wallet is attached.<br>powerd by Ethereum from <b>Inzhoop</b>',
+                  body: 'A podular backup wallet is attached.<br>powerd by Ethereum from <b>COMMONS</b>',
                   isHtml: true
                 };
 
@@ -484,7 +484,7 @@ angular.module('podular.controllers')
     },
       function (err) {
 
-    })  
+    })
   };
 
 })

@@ -1,12 +1,12 @@
-angular.module('podular') 
+angular.module('podular')
 .directive('dapppodularTemplate', function($compile, $http){
     return {
       restrict: "E",
       scope: true,
       link: function(scope,element,attrs){
-        $http.get(attrs.page) 
+        $http.get(attrs.page)
         .success(function(data){
-          var customTemplate =  data;          
+          var customTemplate =  data;
           element.append($compile(customTemplate)(scope));
         })
       }
@@ -22,7 +22,7 @@ angular.module('podular')
         if(attrs.styleclass)
           scope.HEADER_CLASS = attrs.styleclass;
         else
-          scope.HEADER_CLASS =  "bar bar-header bar-assertive";
+          scope.HEADER_CLASS =  "bar bar-header bar-dark";
       }
     };
   })
@@ -68,7 +68,7 @@ angular.module('podular')
         if(attrs.styleclass)
           scope.FOOTER_CLASS = attrs.styleclass;
         else
-          scope.FOOTER_CLASS =  "bar bar-footer bar-assertive";  
+          scope.FOOTER_CLASS =  "bar bar-footer bar-dark";  
       }
     };
   })

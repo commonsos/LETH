@@ -616,20 +616,6 @@ angular.module('podular.controllers', [])
 
 
   $scope.scanTo = function () {
-    console.log($cordovaBarcodeScanner.scan());
-
-    $cordovaBarcodeScanner
-    .scan()
-    .then(function (barcodeData) {
-      if(barcodeData.text!= ""){
-        $state.go('tab.wallet', {addr: barcodeData.text});
-        console.log('read code: ' + barcodeData.text);
-      }
-    }, function (error) {
-      // An error occurred
-      console.log('Error!' + error);
-    });
-
     if (AppService.isPlatformReady()){
       $cordovaBarcodeScanner
       .scan()
@@ -783,8 +769,8 @@ angular.module('podular.controllers', [])
       });
     }else{
       var infoPopup = $ionicPopup.alert({
-        title: 'Creating wallet...',
-        template: 'The process can take a while (about 2 minutes), please wait until the end of loading!'
+        title: 'お財布を発行中...',
+        template: 'お財布を発行中です。発行完了まで１−２分ほど、お待ちください。'
       });
 
       infoPopup.then(function(res) {

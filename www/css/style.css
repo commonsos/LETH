@@ -656,3 +656,8 @@ bottom: 150;
   margin-bottom: 5px;
   height: 10px;
 }
+
+
+.startPage .item-image {
+  height: 500px;
+}
