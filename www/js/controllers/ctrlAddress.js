@@ -7,7 +7,7 @@ angular.module('podular.controllers')
     $scope.image = true;
     $scope.filterWalletAddr = 'button button-small button-outline button-dark';
     $scope.filterShhAddr = 'button button-small button-outline button-dark';
-      
+
     $scope.$on('$ionicView.afterEnter', function() {
        $scope.walletAddress();
     })
@@ -18,7 +18,7 @@ angular.module('podular.controllers')
       {multiplier: "1", unitName: "Wei"}
     ];
 
-    $scope.walletAddress = function(){      
+    $scope.walletAddress = function(){
       $scope.filterWalletAddr = 'button button-small button button-dark';
       $scope.filterShhAddr = 'button button-small button-outline button-dark';
       $scope.isWalletAddress = true;
@@ -36,11 +36,11 @@ angular.module('podular.controllers')
       $scope.qrcodeString = AppService.account() + "#" + AppService.idkey();
 
     }
-    
+
     $scope.onAmountChange = function(amount){
       if($scope.amountPayment == "")
         $scope.qrcodeString = AppService.account() + "#" + AppService.idkey();
-  
+
       $scope.qrcodeString = AppService.account() + "#" + AppService.idkey() + '@' + amount;
     }
 
@@ -61,7 +61,7 @@ angular.module('podular.controllers')
         content = "My wallet address is podular://" + $scope.qrcodeString ;
       if($scope.isShhAddress)
         content = "My identity keys for podular are podular://" + AppService.account() + "#" + AppService.idkey() ;
-      
+
       var phonenumber="";
       if (AppService.isPlatformReady()){
         $cordovaContacts.pickContact().then(function (contactPicked) {
@@ -86,14 +86,14 @@ angular.module('podular.controllers')
           });
 
         });
-      };      
+      };
     }
 
     $scope.shareByShh = function(amount){
       if($scope.isWalletAddress)
         $scope.openFriendsModal(amount);
      if($scope.isShhAddress)
-        $scope.openFriendsModal('contact');       
+        $scope.openFriendsModal('contact');
     }
 
     $scope.shareByEmail = function(){
@@ -116,7 +116,7 @@ angular.module('podular.controllers')
 
       if (AppService.isPlatformReady()){
          $cordovaEmailComposer.isAvailable().then(function() {
-        
+
           var emailOpts = {
             to: [''],
             attachments:[allegato],
@@ -134,7 +134,7 @@ angular.module('podular.controllers')
           console.log("cordovaEmailComposer not available");
           return;
         });
-      };         
+      };
     }
 
     $scope.copyAddr = function(){

@@ -10207,7 +10207,7 @@ IonicModule
  * <ion-content>
  *   Some content!
  * </ion-content>
- * <ion-footer-bar align-title="left" class="bar-assertive">
+ * <ion-footer-bar align-title="left" class="bar-dark">
  *   <div class="buttons">
  *     <button class="button">Left Button</button>
  *   </div>
@@ -10918,7 +10918,7 @@ IonicModule
  * @usage
  *
  * ```html
- *  <ion-footer-bar align-title="left" keyboard-attach class="bar-assertive">
+ *  <ion-footer-bar align-title="left" keyboard-attach class="bar-dark">
  *    <h1 class="title">Title!</h1>
  *  </ion-footer-bar>
  * ```

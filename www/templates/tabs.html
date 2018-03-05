@@ -1,4 +1,4 @@
-<ion-nav-bar class="bar-assertive">
+<ion-nav-bar class="bar-dark">
   <ion-nav-back-button></ion-nav-back-button>
   <ion-nav-buttons side="right">
     <button class="button button-clear" on-touch="scanTo()" ng-hide="fromAddressBook">
@@ -6,14 +6,14 @@
     </button>
   </ion-nav-buttons>
   <ion-nav-buttons side="left">
-    <img ng-src="img/inzhoop-icon.png" ng-click="sendFeedback()" >&nbsp;
+    <img ng-src="img/icon-32.png" ng-click="sendFeedback()" >&nbsp;
     <button class="button button-clear" on-touch="infoSync()">
       <!--i class="{{syncStatus}} {{classNetwork}}"></i-->
       <span class="{{badgeNetwork}} {{syncStatus}}" style="font-size: 8px">{{nameNetwork}}</span>
     </button>
   </ion-nav-buttons>
 </ion-nav-bar>
-<ion-tabs class="tabs-icon-top tabs-color-assertive {{$root.hideTabs}} ">
+<ion-tabs class="tabs-icon-top tabs-color-dark {{$root.hideTabs}} ">
   <!-- Home Tab  -->
   <ion-tab title="{{'STORE_TAB' | translate}}" icon-off="ion-ios-albums-outline" icon-on="ion-ios-albums" href="#/tab/dappleths">
     <ion-nav-view name="dappleths"></ion-nav-view>

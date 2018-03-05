@@ -1,7 +1,7 @@
 angular.module('podular.controllers', [])
-.controller('AppCtrl', function ($ionicHistory, $interval, $scope, $rootScope, $ionicModal,  $cordovaDeviceMotion, $ionicPlatform, 
-                                $ionicPopup, $ionicTabsDelegate, $timeout, $cordovaBarcodeScanner, $state, 
-                                $ionicActionSheet, $cordovaEmailComposer, $cordovaContacts, $q, $ionicLoading, 
+.controller('AppCtrl', function ($ionicHistory, $interval, $scope, $rootScope, $ionicModal,  $cordovaDeviceMotion, $ionicPlatform,
+                                $ionicPopup, $ionicTabsDelegate, $timeout, $cordovaBarcodeScanner, $state,
+                                $ionicActionSheet, $cordovaEmailComposer, $cordovaContacts, $q, $ionicLoading,
                                 $ionicLoadingConfig, $location, $sce, $lockScreen, $cordovaInAppBrowser,$cordovaLocalNotification,
                                 $cordovaBadge, $cordovaGeolocation, $translate,tmhDynamicLocale,$ionicScrollDelegate, $ionicListDelegate, $cordovaClipboard, $cordovaVibration,
                                 ENSService, AppService, Chat, PasswordPopup, Transactions, Friends, ExchangeService, nfcService, SwarmService) {
@@ -24,7 +24,7 @@ angular.module('podular.controllers', [])
 
   $scope.$watch('online', function(newStatus) {
     //console.log('status: ' + newStatus);
-    $scope.isOnline = newStatus; 
+    $scope.isOnline = newStatus;
     refresh();
   });
 
@@ -35,7 +35,7 @@ angular.module('podular.controllers', [])
   window.refresh = function () {
     $ionicLoading.show();
     $scope.shhEnabled = Chat.isEnabled();
-    if($scope.idCoin==0 || $scope.idCoin==undefined)  //buggy from wallet refresh  
+    if($scope.idCoin==0 || $scope.idCoin==undefined)  //buggy from wallet refresh
       $scope.balance = AppService.balance($scope.unit);
     else
       $scope.balance = AppService.balanceOf($scope.contractCoin,$scope.unit + 'e+' + $scope.decimals);
@@ -45,7 +45,7 @@ angular.module('podular.controllers', [])
         $scope.balanceExc = JSON.parse(localStorage.BaseCurrency).symbol + " " + parseFloat(value * $scope.balance).toFixed(2) ;
       }, function(err){
         $scope.balanceExc='N/A';
-      });      
+      });
     }
     $scope.account = AppService.account();
     $scope.nick = AppService.idkey();
@@ -53,7 +53,7 @@ angular.module('podular.controllers', [])
 
     AppService.getNetwork().then(function(res){
       $scope.nameNetwork = res.name;
-      $scope.classNetwork = res.class;               
+      $scope.classNetwork = res.class;
       $scope.badgeNetwork = res.badge;
       getSync();
 
@@ -61,11 +61,11 @@ angular.module('podular.controllers', [])
       if($scope.isDapp)
         $scope.readDappsList(res.name);
       else
-        $scope.readCoinsList(res.name);    
+        $scope.readCoinsList(res.name);
     }, function(err){
         console.log('no Network');
         $scope.nameNetwork = "unvailable";
-        $scope.classNetwork = "stable";               
+        $scope.classNetwork = "stable";
         $scope.badgeNetwork = "badge badge-stable";
     });
 
@@ -114,17 +114,17 @@ angular.module('podular.controllers', [])
     }
   }
 
-  window.addEventListener('native.keyboardshow', keyboardShowHandler);     
-  window.addEventListener('native.keyboardhide', keyboardHideHandler);     
+  window.addEventListener('native.keyboardshow', keyboardShowHandler);
+  window.addEventListener('native.keyboardhide', keyboardHideHandler);
 
- 
-  
+
+
   var flushChats = function(){
     //Flush chat messages
     Chat.flush();
-    $scope.DMchats = Chat.findDM(); 
+    $scope.DMchats = Chat.findDM();
     $scope.chats = Chat.find();
-    //$scope.DAPPchats = Chat.findDAPP(); 
+    //$scope.DAPPchats = Chat.findDAPP();
   }
 
   window.resetChatFilter = function(){
@@ -142,7 +142,7 @@ angular.module('podular.controllers', [])
   $scope.loadFriends = function(){
     $scope.friends = Friends.all();
   }
-  
+
   window.customPasswordProvider = function (callback) {
     var pw;
     PasswordPopup.open("Digit your wallet password", "unlock account to proceed").then(
@@ -168,7 +168,7 @@ angular.module('podular.controllers', [])
         pw = "";
       })
   };
-  
+
 
   $scope.openInEtherscan = function(path,addr){
     var etherscanUrl;
@@ -180,8 +180,8 @@ angular.module('podular.controllers', [])
       etherscanUrl="https://rinkeby.etherscan.io/" + path +"/";
     if($scope.nameNetwork=="Mainet")
       etherscanUrl="https://etherscan.io/" + path +"/";
-    
-    var pinUrl = etherscanUrl + addr;    
+
+    var pinUrl = etherscanUrl + addr;
       var options = {
         location: 'yes',
         clearcache: 'yes',
@@ -195,13 +195,13 @@ angular.module('podular.controllers', [])
           })
           .catch(function(event) {
             // error
-          }); 
+          });
       }
   }
 
   var getSync = function(){
     if(!web3.currentProvider) return;
-    try {    
+    try {
         if(web3.eth.syncing)
           $scope.syncStatus = "blinking";
         else
@@ -211,13 +211,13 @@ angular.module('podular.controllers', [])
     } catch (err) {
       var alertPopup = $ionicPopup.show({
         title: 'Error',
-        template: 'Something is wrong! <br/>' + err.message   
+        template: 'Something is wrong! <br/>' + err.message
       });
 
       alertPopup.then(function(res) {
          alertPopup.close();
       });
-    
+
       $timeout(function() {
          alertPopup.close();
       }, 3000);
@@ -234,21 +234,21 @@ angular.module('podular.controllers', [])
 
      var alertPopup = $ionicPopup.alert({
         title: 'Info Sync Node',
-        template: 'Sync status: ' + sync + 
-                  '<br/>BlockNumber: ' + blockNumber + 
-                  '<br/>Network: ' + $scope.nameNetwork + 
+        template: 'Sync status: ' + sync +
+                  '<br/>BlockNumber: ' + blockNumber +
+                  '<br/>Network: ' + $scope.nameNetwork +
                   '<br/>Change Network type from Settings'
       });
 
       alertPopup.then(function(res) {
-        
+
       });
   }
 
   $scope.readCategoryList = function(){
     AppService.getStoreCategories($scope.nameNetwork).then(function(response){
       $scope.listCategory = response;
-    }) 
+    })
   };
 
   $scope.readDappsList = function(){
@@ -259,9 +259,9 @@ angular.module('podular.controllers', [])
 
     AppService.getStoreApps($scope.nameNetwork).then(function(response){
       $scope.listApps = response;
-    }) 
+    })
 
-  }; 
+  };
 
   $scope.readCoinsList = function(){
     $scope.filterStoreCoins = 'button button-small button button-positive';
@@ -275,21 +275,21 @@ angular.module('podular.controllers', [])
       $scope.listTokens=null;
     });
 
-  };      
+  };
 
   $scope.shareByChat = function (friend,param) {
     if(param=='contact')
       Chat.sendCryptedContact(friend.addr,friend.idkey);
     else
       Chat.sendCryptedPaymentReq("Please send me " + param + " eth &#x1F4B8; !", param, friend.addr,friend.idkey);
-  
+
     $state.go('tab.friend', {Friend: friend.addr});
   };
 
  $scope.inviteFriend = function (friend,param) {
     Chat.sendInviteToDapp(param,friend.addr,friend.idkey);
     $ionicLoading.show({ template: "Done!", noBackdrop: true, duration: 2000 })
-    
+
   };
 
   var codeModal;
@@ -401,7 +401,7 @@ angular.module('podular.controllers', [])
       // Get the token name
       token.name.call(function(err, name) {
         if(err) { console.log(err) }
-        if(name) { 
+        if(name) {
           console.log('The token name is: ' + name);
           $scope.token.name = name;
         }
@@ -409,8 +409,8 @@ angular.module('podular.controllers', [])
 
       token.decimals.call(function(err, decimals) {
         if(err) { console.log(err) }
-        if(decimals) { 
-          console.log('The decimals are: ' + decimals.toNumber()) 
+        if(decimals) {
+          console.log('The decimals are: ' + decimals.toNumber())
           $scope.token.decimals = decimals.toNumber();
         }
       })
@@ -497,7 +497,7 @@ angular.module('podular.controllers', [])
     var customToken = {
       "Name" : $scope.token.name,
       "GUID" : "C" + $scope.listTokens.length+1,
-      "Network" : $scope.nameNetwork, 
+      "Network" : $scope.nameNetwork,
       "Company" : $scope.token.company,
       "Logo" : $scope.token.logo,
       "Symbol" : $scope.token.symbol,
@@ -536,11 +536,11 @@ angular.module('podular.controllers', [])
         $scope.listTokens.splice($scope.listTokens.indexOf(token),1);
         AppService.deleteLocalToken(token);
       }
-      
+
       $scope.readCoinsList();
       $ionicListDelegate.closeOptionButtons();
    });
-   
+
   }
 
   $scope.shareCustomToken = function (friend,token) {
@@ -561,12 +561,12 @@ angular.module('podular.controllers', [])
   };
 
   $scope.isValidAddr = function(addr){
-    if(addr){      
+    if(addr){
       if(typeof addr.split('.')[1] != 'undefined' && addr.split('.')[1]==ENSService.suffix){
         //not able to change addrTo scope wallet variable!
         addr = ENSService.getAddress(angular.lowercase(addr));
         $scope.ENSResolved = addr;
-      } 
+      }
       else
         $scope.ENSResolved="";
     }
@@ -578,7 +578,7 @@ angular.module('podular.controllers', [])
 
   var isNfcAvailable = function(){
     if (AppService.isPlatformReady()){
-    
+
       try{
         nfc.enabled(function(){
           $scope.nfcAvailable = true;
@@ -590,12 +590,12 @@ angular.module('podular.controllers', [])
             ermsg='Not enabled on Device!'
           } else{
             ermsg = e;
-            $scope.nfcAvailable = false;        
+            $scope.nfcAvailable = false;
           }
-          if(!ermsg){   
+          if(!ermsg){
             var alertPopup = $ionicPopup.show({
               title: 'NFC Error',
-              template: ermsg   
+              template: ermsg
             });
 
             alertPopup.then(function(res) {
@@ -603,19 +603,33 @@ angular.module('podular.controllers', [])
             });
 
             $timeout(function() {
-               alertPopup.close(); 
+               alertPopup.close();
             }, 3000);
           }
         })
       }catch(e){
       }
     }
-    
+
     return false;
   };
-  
+
 
   $scope.scanTo = function () {
+    console.log($cordovaBarcodeScanner.scan());
+
+    $cordovaBarcodeScanner
+    .scan()
+    .then(function (barcodeData) {
+      if(barcodeData.text!= ""){
+        $state.go('tab.wallet', {addr: barcodeData.text});
+        console.log('read code: ' + barcodeData.text);
+      }
+    }, function (error) {
+      // An error occurred
+      console.log('Error!' + error);
+    });
+
     if (AppService.isPlatformReady()){
       $cordovaBarcodeScanner
       .scan()
@@ -633,8 +647,8 @@ angular.module('podular.controllers', [])
 
   $scope.lat = "N/A";
   $scope.long = "";
-  $scope.geoWatch;    
-  
+  $scope.geoWatch;
+
   $scope.watchLocation = function(){
     $scope.geoWatch = $cordovaGeolocation.watchPosition(watchOptions)
     //$scope.geoWatch = Geolocation.watchPosition();
@@ -652,7 +666,7 @@ angular.module('podular.controllers', [])
         //Chat.sendPosition(position);
       });
   }
-  
+
 
   $scope.sendFeedback = function(){
     // Show the action sheet
@@ -728,7 +742,7 @@ angular.module('podular.controllers', [])
     console.log($scope.mnemonicWords);
   }
 
-  $scope.isValidMnemonic = function(seed){        
+  $scope.isValidMnemonic = function(seed){
     if (seed.split(' ').length==12 && lightwallet.keystore.isSeedValid(seed)){
       $scope.randomSeed = seed;
       seedToList(seed);
@@ -736,7 +750,7 @@ angular.module('podular.controllers', [])
     }else
       return false;
   }
-  
+
   $scope.verifiedWords=[];
   $scope.verifyWord = function(word){
     $scope.verifiedWords.push(word);
@@ -745,7 +759,7 @@ angular.module('podular.controllers', [])
   $scope.inVerified = function(word){
     var result = false;
     $scope.verifiedWords.filter(function(w){
-      if(w == word) 
+      if(w == word)
         result=true;
     })
     return result;
@@ -756,7 +770,7 @@ angular.module('podular.controllers', [])
     return match;
   }
 
-  $scope.createWallet = function (seed, password, code) { 
+  $scope.createWallet = function (seed, password, code) {
     if(!lightwallet.keystore.isSeedValid(seed)){
       var alertPopup = $ionicPopup.alert({
         title: 'Invalid Seed',
@@ -770,7 +784,7 @@ angular.module('podular.controllers', [])
     }else{
       var infoPopup = $ionicPopup.alert({
         title: 'Creating wallet...',
-        template: 'The process can take a while (about 2 minutes), please wait until the end of loading!'  
+        template: 'The process can take a while (about 2 minutes), please wait until the end of loading!'
       });
 
       infoPopup.then(function(res) {
@@ -792,7 +806,7 @@ angular.module('podular.controllers', [])
             hdPathString: hdPath2
           }
         }
-        
+
         lightwallet.keystore.createVault(opts, function (err, ks) {
           ks.keyFromPassword(password, function (err, pwDerivedKey) {
             if (err) throw err;
@@ -810,7 +824,7 @@ angular.module('podular.controllers', [])
               local_keystore.addHdDerivationPath(hdPath,pw2DerivedKey,info);
               local_keystore.generateNewEncryptionKeys(pw2DerivedKey, 1, hdPath);
               local_keystore.setDefaultHdDerivationPath(hdPath);
-            
+
 
               AppService.setWeb3Provider(global_keystore);
 
@@ -825,7 +839,7 @@ angular.module('podular.controllers', [])
 
               var msg = 'new user added';
               Chat.sendMessage(msg);
-              
+
               refresh();
               setChatFilter();
               $state.go('tab.dappleths');
@@ -834,11 +848,11 @@ angular.module('podular.controllers', [])
 
           });
         });
-        
+
       });
-      
+
       $timeout(function() {
-         infoPopup.close(); 
+         infoPopup.close();
       }, 5000);
     }
   };
@@ -872,10 +886,10 @@ angular.module('podular.controllers', [])
   $scope.isFriend = function(address) {
     var res = Friends.get(address);
     if(address == AppService.account())
-        return "me" ; 
+        return "me" ;
     if(res==undefined)
       return "";
-    else         
+    else
       return res.name ;
   }
 
@@ -884,13 +898,13 @@ angular.module('podular.controllers', [])
       if($scope.isFriend(addr))
         Friends.update(name,addr,idkey,comment);
       else
-        Friends.add(name,addr,idkey,comment);      
+        Friends.add(name,addr,idkey,comment);
     }
-    
-    $scope.closeSaveAddressModal(); 
+
+    $scope.closeSaveAddressModal();
     $scope.friends = Friends.all();
   };
-  
+
   console.log("status login: " + $rootScope.hasLogged)
 
   //shake start
@@ -900,7 +914,7 @@ angular.module('podular.controllers', [])
   $scope.shakeCounter=3;
 
   // watch Acceleration options
-  $scope.options = { 
+  $scope.options = {
       frequency: 500, // Measure every 100ms
       deviation : 30  // We'll use deviation to determine the shake event, best values in the range between 25 and 30
   };
@@ -911,14 +925,14 @@ angular.module('podular.controllers', [])
       z : null,
       timestamp : null
   }
-  // Previous measurements    
+  // Previous measurements
   $scope.previousMeasurements = {
       x : null,
       y : null,
       z : null,
       timestamp : null
-  }   
-  
+  }
+
   var hashCode = function(text) {
     var hash = 0, i, chr, len;
     if (text.length === 0) return hash;
@@ -930,29 +944,29 @@ angular.module('podular.controllers', [])
     return hash;
   };
 
-  var startWatching = function() { 
+  var startWatching = function() {
     if (AppService.isPlatformReady()){
       $scope.watch = $cordovaDeviceMotion.watchAcceleration($scope.options);
       $scope.watch.then(null, function(error) {
         console.log('Error');
       },function(result) {
-        // Set current data  
+        // Set current data
         $scope.measurements.x = result.x;
         $scope.measurements.y = result.y;
         $scope.measurements.z = result.z;
-        $scope.measurements.timestamp = result.timestamp;  
-        // Detecta shake  
-        detectShake(result);   
-      });   
+        $scope.measurements.timestamp = result.timestamp;
+        // Detecta shake
+        detectShake(result);
+      });
     };
-  };       
+  };
 
-  var stopWatching = function() { 
+  var stopWatching = function() {
     if($scope.watch != undefined)
-      $scope.watch.clearWatch();  
-  }       
+      $scope.watch.clearWatch();
+  }
 
-  var detectShake = function(result) {  
+  var detectShake = function(result) {
     var measurementsChange = {};
     // Calculate measurement change only if we have two sets of data, current and old
     if ($scope.previousMeasurements.x !== null) {
@@ -963,8 +977,8 @@ angular.module('podular.controllers', [])
 
     if (measurementsChange.x + measurementsChange.y + measurementsChange.z > $scope.options.deviation) {
       stopWatching();  // Stop watching because it will start triggering like hell
-      console.log('Shake detected'); 
-      $scope.classShake = "shakeit";       
+      console.log('Shake detected');
+      $scope.classShake = "shakeit";
       $scope.shakeCounter--;
 
       if ($scope.shakeCounter>0)
@@ -973,11 +987,11 @@ angular.module('podular.controllers', [])
       $scope.randomString+=result.x+result.y+result.z;
 
       // Clean previous measurements after succesfull shake detection, so we can do it next time
-      $scope.previousMeasurements = { 
-          x: null, 
-          y: null, 
+      $scope.previousMeasurements = {
+          x: null,
+          y: null,
           z: null
-      } 
+      }
 
      if($scope.shakeCounter==0){
         $scope.randomString = hashCode($scope.randomString);
@@ -987,7 +1001,7 @@ angular.module('podular.controllers', [])
       }
 
     } else if (measurementsChange.x + measurementsChange.y + measurementsChange.z > $scope.options.deviation/2) {
-      $scope.classShake = "shakeit"; 
+      $scope.classShake = "shakeit";
       $scope.previousMeasurements = {
           x: result.x,
           y: result.y,
@@ -995,18 +1009,18 @@ angular.module('podular.controllers', [])
       }
     } else {
       // On first measurements set it as the previous one
-      $scope.classShake = ""; 
+      $scope.classShake = "";
       $scope.previousMeasurements = {
           x: result.x,
           y: result.y,
           z: result.z
       }
-    }           
-  }        
+    }
+  }
 
   $scope.$on('$ionicView.beforeLeave', function(){
-    stopWatching(); 
-  }); 
+    stopWatching();
+  });
 
   var startModal;
   var createStartModal = function () {
@@ -1123,12 +1137,12 @@ angular.module('podular.controllers', [])
 
   $scope.restoreLogin = function(seed){
     closeEntropyModal();
-    // restore keystore from seed 
+    // restore keystore from seed
     $scope.randomSeed = seed;
     createLoginModal();
   }
 
-  $scope.Login = function (seed, pw, cod) { 
+  $scope.Login = function (seed, pw, cod) {
     var err;
     if(!lightwallet.keystore.isSeedValid(seed))
       err = "Seed not valid <br/>";
@@ -1140,7 +1154,7 @@ angular.module('podular.controllers', [])
     if(err){
       var alertPopup = $ionicPopup.show({
         title: 'Error',
-        template: 'Invalid data! <br/>' + err   
+        template: 'Invalid data! <br/>' + err
       });
 
       alertPopup.then(function(res) {
@@ -1148,13 +1162,13 @@ angular.module('podular.controllers', [])
       });
 
       $timeout(function() {
-         alertPopup.close(); 
+         alertPopup.close();
       }, 3000);
 
     }else{
       $scope.createWallet(seed, pw, cod);
-      //$scope.closeLoginModal();   
-      closeStartModal();   
+      //$scope.closeLoginModal();
+      closeStartModal();
     }
   };
 
@@ -1177,16 +1191,16 @@ angular.module('podular.controllers', [])
       }, function (error) {
         console.log("cordovaEmailComposer not available");
         return;
-      }); 
+      });
     };
   };
 
   //init
-  $scope.friends = [];    
+  $scope.friends = [];
   $scope.transactions = Transactions.all();
   $scope.currencies = ExchangeService.getCurrencies();
   $scope.xCoin = "XETH";
-  
+
   if($rootScope.hasLogged ){
     var ls = JSON.parse(localStorage.AppKeys);
     var ks = JSON.parse(localStorage.EncKeys);
@@ -1215,9 +1229,9 @@ angular.module('podular.controllers', [])
   */
   $scope.msgCounter = 0;
   $scope.DMCounter = 0;
-  $scope.DMchats = Chat.findDM(); 
-  //$scope.DAPPchats = Chat.findDAPP(); 
-  $scope.chats = Chat.find(); 
+  $scope.DMchats = Chat.findDM();
+  //$scope.DAPPchats = Chat.findDAPP();
+  $scope.chats = Chat.find();
 
   $scope.setBadge = function(value) {
     if (AppService.isPlatformReady()){
@@ -1327,7 +1341,7 @@ angular.module('podular.controllers', [])
             break;
           case 4: // open location
             var pinUrl = "https://www.google.com/maps/place/" + msg.attach.latitude + "," + msg.attach.longitude
-      
+
             var options = {
               location: 'yes',
               clearcache: 'yes',
@@ -1350,7 +1364,7 @@ angular.module('podular.controllers', [])
           case 6: // install token
             var msgTxt = "<h2 class='text-center'>Custom Token " + msg.attach.Name + " Shared! </h2>";
             msgTxt += "<p class='text-center'><img height='100px' width='auto' src='" + msg.attach.Logo + "'/></p>";
-              
+
             var confirmPopup = $ionicPopup.confirm({
               title: 'Install Custom Token',
               template: 'A new Token shared with you!<br/>Do you want to add ' + msg.attach.Name + '?'
@@ -1405,7 +1419,7 @@ angular.module('podular.controllers', [])
 
   $scope.chooseDappAction = function(dapp){
     var buttonsOpt= [{ text: '<i class="icon ion-android-share-alt"></i> Invite a friend', index: 1 }];
-    
+
     var hideSheet = $ionicActionSheet.show({
       buttons: buttonsOpt,
       destructiveText: (ionic.Platform.isAndroid()?'<i class="icon ion-android-exit assertive"></i> ':'')+'Cancel',
@@ -1438,7 +1452,7 @@ angular.module('podular.controllers', [])
   $scope.$on('incomingMessage', function (e, payload) {
     if(!payload.to[0]){
       //public msg
-      if($ionicTabsDelegate.selectedIndex()==1) 
+      if($ionicTabsDelegate.selectedIndex()==1)
         $scope.scrollTo('chatScroll','bottom');
       else{
         if(payload.time > JSON.parse(localStorage.LastMsg).time){
@@ -1446,7 +1460,7 @@ angular.module('podular.controllers', [])
           localStorage.LastMsg = JSON.stringify({time: payload.time, hash: payload.hash});
         }
       }
-      $scope.vibrate(); 
+      $scope.vibrate();
     }
 
     if(payload.to[0] && payload.to[0]==AppService.account()){
@@ -1454,7 +1468,7 @@ angular.module('podular.controllers', [])
       if(!$scope.isFriend(payload.from)){
         Friends.add(payload.from,payload.from,payload.senderKey,payload.text);
       }
-      if($ionicHistory.currentView().stateName=='tab.friend' && 
+      if($ionicHistory.currentView().stateName=='tab.friend' &&
         $ionicHistory.currentView().stateParams.Friend == payload.from)
         $scope.scrollTo('chatDMScroll','bottom');
       else{
@@ -1474,11 +1488,11 @@ angular.module('podular.controllers', [])
 
 
       $scope.loadFriends();
-      $scope.vibrate(); 
+      $scope.vibrate();
     }
 
     if(!$scope.$$phase) {
-      $scope.$digest(); 
+      $scope.$digest();
     }
   });
 
@@ -1508,7 +1522,7 @@ angular.module('podular.controllers', [])
           toNotify=true;
         }
 
-        //console.log('in backgroundMode:' + msg);    
+        //console.log('in backgroundMode:' + msg);
         if(toNotify){
           $scope.scheduleSingleNotification(payload.from,msg,payload.hash);
           $scope.increaseBadge();
@@ -1558,6 +1572,6 @@ angular.module('podular.controllers', [])
       $scope.cancelAllNotifications();
       $scope.clearBadge();
     }
-  );     
+  );
 
 }) //fine AppCtrl
