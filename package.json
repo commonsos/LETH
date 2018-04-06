@@ -3,7 +3,18 @@
     "version": "0.7.0",
     "description": "podular: the 1st Eth mobile wallet",
     "dependencies": {
+        "@angular/platform-server": "^5.2.7",
+        "@angular/service-worker": "^5.2.7",
         "@ionic-native/barcode-scanner": "^4.5.3",
+        "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.5.4",
+        "cordova-plugin-email-composer": "git+https://github.com/katzer/cordova-plugin-email-composer.git",
+        "cordova-plugin-file": "~3.0.0",
+        "cordova-plugin-globalization": "~1.0.7",
+        "cordova-plugin-http": "~1.2.0",
+        "cordova-plugin-local-notification": "git+https://github.com/katzer/cordova-plugin-local-notifications.git",
+        "de.appplant.cordova.plugin.email-composer": "https://github.com/katzer/cordova-plugin-email-composer.git",
+        "de.appplant.cordova.plugin.local-notification": "https://github.com/katzer/cordova-plugin-local-notifications.git",
         "express": "^4.16.2",
         "gulp": "^3.5.6",
         "gulp-concat": "^2.2.0",
@@ -11,6 +22,8 @@
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^2.0.4",
         "ionic-lock-screen": "^1.0.0",
+        "ng-pwa-tools": "0.0.15",
+        "phonegap-nfc": "~0.6.6",
         "phonegap-plugin-barcodescanner": "git+https://github.com/phonegap/phonegap-plugin-barcodescanner.git"
     },
     "devDependencies": {
@@ -96,7 +109,18 @@
     ],
     "cordova": {
         "plugins": {
-            "phonegap-plugin-barcodescanner": {}
-        }
+            "phonegap-plugin-barcodescanner": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-globalization": {},
+            "cordova-plugin-http": {},
+            "de.appplant.cordova.plugin.email-composer": {},
+            "de.appplant.cordova.plugin.local-notification": {},
+            "phonegap-nfc": {},
+            "cordova-plugin-email-composer": {},
+            "cordova-plugin-local-notification": {}
+        },
+        "platforms": [
+            "ios"
+        ]
     }
 }
