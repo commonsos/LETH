@@ -1,6 +1,6 @@
 {
   "name": "podular",
-  "app_id": "com.commonsos.podular",
+  "app_id": "com.commonsos.wallets2",
   "integrations": {
     "gulp": {},
     "cordova": {}
