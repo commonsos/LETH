@@ -13,9 +13,9 @@ angular.module('podular.controllers')
     })
 
     $scope.listUnit = [
-      {multiplier: "1.0e18", unitName: "Ether"},
-      {multiplier: "1.0e15", unitName: "Finney"},
-      {multiplier: "1", unitName: "Wei"}
+      {multiplier: "1.0e18", unitName: "COM"},
+      {multiplier: "1.0e15", unitName: "moc"},
+      {multiplier: "1", unitName: "Satori"}
     ];
 
     $scope.walletAddress = function(){
