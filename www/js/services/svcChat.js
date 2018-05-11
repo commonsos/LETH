@@ -4,16 +4,16 @@ angular.module('podular.services')
   var chats=[];
   var chatsDM=[];
   var chatsDAPP=[];
-  var topics = web3.fromUtf8('podular');
-  var filter =  null;
+  var topics = web3.fromUtf8('comm');
+  var filter = null;
 
   return{
     settings: function(){
       return JSON.parse(localStorage.Shh);
     },
     createFilter: function(myTopics){
-      return web3.shh.newMessageFilter({symKeyID: this.identity(), topic: myTopics}, 
-        null, 
+      return web3.shh.newMessageFilter({symKeyID: this.identity(), topic: myTopics},
+        null,
         function(error) {
           console.log(error);
         });
@@ -31,13 +31,13 @@ angular.module('podular.services')
     },
     envelop: function(mode){
       return {
-        type: 'podular', 
-        mode: mode, 
-        time: Date.now(), 
-        from: AppService.account(), 
-        to: [null], 
-        text: '', 
-        image: '',  
+        type: 'podular',
+        mode: mode,
+        time: Date.now(),
+        from: AppService.account(),
+        to: [null],
+        text: '',
+        image: '',
         senderKey: AppService.idkey()
       }
     },
@@ -59,7 +59,7 @@ angular.module('podular.services')
             hash: hashId,
             delivered: false
       });
-      
+
     },
     pushChat: function(msg, hashId){
       chats.push({
@@ -69,13 +69,13 @@ angular.module('podular.services')
             hash: hashId,
             delivered: false
       });
-     
+
     },
     identity: function(){
       try{
         if(!web3.shh.hasSymKey(identity)){
           identity = web3.shh.generateSymKeyFromPassword("podular");
-        }        
+        }
       }catch(e){
         return;
       }
@@ -98,7 +98,7 @@ angular.module('podular.services')
       topics.push(t);
     },
     removeTopic: function(t){
-      topics.pop(t); 
+      topics.pop(t);
     },
     listTopics: function(){
       var list = JSON.parse( JSON.stringify( topics ) );
@@ -112,12 +112,12 @@ angular.module('podular.services')
       msg.attach = content;
       var svc = this;
 
-      var payload = web3.fromUtf8(JSON.stringify(msg));        
+      var payload = web3.fromUtf8(JSON.stringify(msg));
       var message = svc.wrap(payload);
 
       web3.shh.post(message, function(err,res){
         console.log(err,res);
-      }); 
+      });
 
     },
     sendMessage: function (content) {
@@ -131,14 +131,20 @@ angular.module('podular.services')
       this.pushChat(msg,hashMsg);
 
       web3.shh.post(message, function(err,res){
+
+        console.log('sendMessage');
+        console.log(message);
+        console.log(err);
+        console.log(res);
+
         if(!res){
           chats.filter(function (c) {
             if(c.hash === hashMsg){
               c.error=true;
             }
-          }); 
+          });
         }
-      });       
+      });
     },
     sendCryptedMessage: function (content,toAddr,toKey) {
       var msg = this.envelop('encrypted');
@@ -147,24 +153,30 @@ angular.module('podular.services')
       msg.to = [toAddr,AppService.account()];
       msg.text = content;
       var svc = this;
-      
+
       svc.pushChatDM(msg, hashMsg);
 
       lightwallet.keystore.deriveKeyFromPassword(JSON.parse(localStorage.AppCode).code, function (err, pwDerivedKey) {
         var encMsg = angular.copy(msg);
         encMsg.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,content,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
-        var payload = web3.fromUtf8(JSON.stringify(encMsg));        
+        var payload = web3.fromUtf8(JSON.stringify(encMsg));
         var message = svc.wrap(payload);
 
         web3.shh.post(message, function(err,res){
+
+          console.log('sendCryptedMessage');
+          console.log(message);
+          console.log(err);
+          console.log(res);
+
           if(!res){
             chatsDM.filter(function (c) {
               if(c.hash === hashMsg){
                 c.error = true;
               }
-            }); 
+            });
           }
-        }); 
+        });
       });
     },
     sendImageShh: function (content) {
@@ -176,16 +188,16 @@ angular.module('podular.services')
       var message = this.wrap(payload);
 
       this.pushChat(msg,hashMsg);
-      
+
       web3.shh.post(message, function(err,res){
         if(err){
           chats.filter(function (c) {
             if(c.hash === hashMsg){
               c.error=true;
             }
-          }); 
+          });
         }
-      }); 
+      });
     },
     sendImage: function (content) {
       var msg = this.envelop('plain');
@@ -198,7 +210,7 @@ angular.module('podular.services')
         var nMsg = angular.copy(msg);
         nMsg.image = val;
         nMsg.text = "bzzr@: " + val;
-        
+
         var payload = web3.fromUtf8(JSON.stringify(nMsg));
         var message = svc.wrap(payload);
 
@@ -208,9 +220,9 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
-        }); 
+        });
       }).catch(console.log);
     },
     sendCryptedPaymentReq: function (content,request,toAddr,toKey) {
@@ -229,7 +241,7 @@ angular.module('podular.services')
         var encMsg = angular.copy(msg);
         encMsg.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,content,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
         encMsg.attach = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,JSON.stringify(paymentRequest),AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
-        
+
         var payload = web3.fromUtf8(JSON.stringify(encMsg));
         var message = svc.wrap(payload);
 
@@ -240,9 +252,9 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
-        }); 
+        });
       });
     },
     sendCryptedCustomToken: function (content,token,toAddr,toKey) {
@@ -272,7 +284,7 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
         });
       });
@@ -308,7 +320,7 @@ angular.module('podular.services')
       lightwallet.keystore.deriveKeyFromPassword(JSON.parse(localStorage.AppCode).code, function (err, pwDerivedKey) {
         var encMsg = angular.copy(msg);
         crptMsg.payload.image = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,content,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
-         
+
         var payload = web3.fromUtf8(JSON.stringify(encMsg));
         var message = svc.wrap(payload);
 
@@ -318,9 +330,9 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
-        }); 
+        });
 
       });
     },
@@ -342,8 +354,8 @@ angular.module('podular.services')
         SwarmService.upload(encMsg.image).then(function(val){
           encMsg.image = val;
           var bzzrAddr = "bzzr@: " + val;
-          encMsg.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,bzzrAddr,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath); 
-          
+          encMsg.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,bzzrAddr,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
+
           var payload = web3.fromUtf8(JSON.stringify(encMsg));
           var message = svc.wrap(payload);
 
@@ -354,9 +366,9 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
-          }); 
+          });
         }).catch(console.log);
       });
     },
@@ -377,12 +389,12 @@ angular.module('podular.services')
 
       lightwallet.keystore.deriveKeyFromPassword(JSON.parse(localStorage.AppCode).code, function (err, pwDerivedKey) {
         var encNote = angular.copy(msg);
-        encNote.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,msg.text,AppService.idkey(),[toKey.idkey.replace("0x",""),AppService.idkey()],hdPath); 
+        encNote.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,msg.text,AppService.idkey(),[toKey.idkey.replace("0x",""),AppService.idkey()],hdPath);
         encNote.attach = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,JSON.stringify(transaction),AppService.idkey(),[toKey.idkey.replace("0x",""),AppService.idkey()],hdPath);
 
         var payload = web3.fromUtf8(JSON.stringify(encNote));
         var message = svc.wrap(payload);
-  
+
 
         web3.shh.post(message, function(err,res){
           if(!res){
@@ -390,11 +402,11 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error = true;
               }
-            }); 
+            });
           }
-        }); 
+        });
       });
-    },      
+    },
     sendContact: function () {
       var msg = this.envelop('contact');
       var hashMsg = web3.fromUtf8(JSON.stringify(msg));
@@ -404,7 +416,7 @@ angular.module('podular.services')
 
       var payload = web3.fromUtf8(JSON.stringify(msg));
       var message = svc.wrap(payload);
-      
+
       svc.pushChat(msg,hashMsg);
 
       web3.shh.post(message, function(err,res){
@@ -413,9 +425,9 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
-      }); 
+      });
     },
     sendCryptedContact: function (toAddr,toKey) {
       var msg = this.envelop('contact');
@@ -423,13 +435,13 @@ angular.module('podular.services')
       msg.to = [toAddr,AppService.account()];
       msg.text = 'My addresses ' + '&#x1F464;';
       var svc = this;
-      
+
       svc.pushChatDM(msg, hashMsg);
 
       lightwallet.keystore.deriveKeyFromPassword(JSON.parse(localStorage.AppCode).code, function (err, pwDerivedKey) {
         var encMsg = angular.copy(msg);
         encMsg.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,msg.text,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
-        var payload = web3.fromUtf8(JSON.stringify(encMsg));        
+        var payload = web3.fromUtf8(JSON.stringify(encMsg));
         var message = svc.wrap(payload);
 
         web3.shh.post(message, function(err,res){
@@ -438,11 +450,11 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error = true;
               }
-            }); 
+            });
           }
-        }); 
+        });
       });
-    },      
+    },
     sendPosition: function (toAddr, position) {
       var msg = this.envelop('geolocation');
       var hashMsg = web3.fromUtf8(JSON.stringify(msg));
@@ -453,7 +465,7 @@ angular.module('podular.services')
 
       var payload = web3.fromUtf8(JSON.stringify(msg));
       var message = svc.wrap(payload);
-      
+
       svc.pushChat(msg,hashMsg);
 
       web3.shh.post(message, function(err,res){
@@ -462,9 +474,9 @@ angular.module('podular.services')
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
-      }); 
+      });
     },
     sendCryptedPosition: function (toAddr, position) {
       var msg = this.envelop('geolocation');
@@ -474,29 +486,29 @@ angular.module('podular.services')
       msg.attach = position;
       msg.to = [toAddr,AppService.account()];
       var svc = this;
-    
+
       svc.pushChatDM(msg,hashMsg);
 
       var toKey = Friends.get(toAddr).idkey;
 
       lightwallet.keystore.deriveKeyFromPassword(JSON.parse(localStorage.AppCode).code, function (err, pwDerivedKey) {
         var encMsg = angular.copy(msg);
-        encMsg.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,msg.text,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath); 
+        encMsg.text = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,msg.text,AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
         encMsg.attach = lightwallet.encryption.multiEncryptString(local_keystore,pwDerivedKey,JSON.stringify(position),AppService.idkey(),[toKey.replace("0x",""),AppService.idkey()],hdPath);
 
         var payload = web3.fromUtf8(JSON.stringify(encMsg));
         var message = svc.wrap(payload);
-  
+
         web3.shh.post(message, function(err,res){
           if(err){
             chats.filter(function (c) {
               if(c.hash === hashMsg){
                 c.error=true;
               }
-            }); 
+            });
           }
         });
-      });      
+      });
     },
     sendDappMessageShh: function (text, dapp) {
       var msg = this.envelop('dappMessage');
@@ -506,8 +518,8 @@ angular.module('podular.services')
 
       var payload = web3.fromUtf8(JSON.stringify(msg));
       var message = svc.wrap(payload);
-      
-      web3.shh.post(message); 
+
+      web3.shh.post(message);
 
       chatsDAPP.push({
         identity: blockies.create({ seed: msg.from}).toDataURL("image/jpeg"),
@@ -533,7 +545,7 @@ angular.module('podular.services')
       if(!svc.isEnabled()) return;
 
       filter =  svc.createFilter(topics);
-      
+
       filter.watch(function (error, result) {
         //exit on error
         if(error) return;
@@ -541,7 +553,7 @@ angular.module('podular.services')
         var payload = JSON.parse(web3.toUtf8(result.payload));
         //build hashId for ack message
         var sign = svc.envelop(payload.mode);
-        sign.time = payload.time; 
+        sign.time = payload.time;
         sign.from = payload.from;
         sign.senderKey = payload.senderKey;
 
@@ -554,13 +566,13 @@ angular.module('podular.services')
               c.delivered=true;
             }
           })
-          
+
           chatsDM.filter(function (c) {
             if(c.hash === payload.attach && c.message.from == AppService.account()){
               c.delivered=true;
             }
           })
-          
+
           return;
         };
 
@@ -584,14 +596,14 @@ angular.module('podular.services')
         var isBanned=false;
         var blist = JSON.parse(localStorage.Blacklist);
         blist.filter(function (val) {
-          if(val.addr === payload.from) 
+          if(val.addr === payload.from)
             isBanned=true;
         });
         if(isBanned) return;
 
         //exit if outdated  get only 1 hour before last msg
-        //if(payload.time*3600 < JSON.parse(localStorage.LastMsg).time){return;} 
-        
+        //if(payload.time*3600 < JSON.parse(localStorage.LastMsg).time){return;}
+
         //if is public
         if(!payload.to[0]){
           if(payload.image != ''){
@@ -608,7 +620,7 @@ angular.module('podular.services')
 
           }
         };
-        
+
         //if is DM encrypted
         if(payload.to[0] && payload.to[0]==AppService.account()){
           lightwallet.keystore.deriveKeyFromPassword(JSON.parse(localStorage.AppCode).code, function (err, pwDerivedKey) {
@@ -620,7 +632,7 @@ angular.module('podular.services')
               SwarmService.downloadRw(payload.image).then(function(val){
                 var img = JSON.parse(web3.toUtf8(val.toString()));
                 payload.image = lightwallet.encryption.multiDecryptString(local_keystore,pwDerivedKey,img, payload.senderKey,AppService.idkey(),hdPath);
-                
+
                 pushChatDM(payload, payload.hash);
                 $scope.$broadcast("incomingMessage", payload);
                 svc.sendACK(payload.hash, payload.to[1]);
@@ -638,7 +650,7 @@ angular.module('podular.services')
           });
         }
 
-      });  
+      });
     },
     retrieveImage: function(){
 

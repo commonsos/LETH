@@ -1,6 +1,6 @@
 angular.module('podular.services')
-.factory('ENSService', function ($rootScope, $q, AppService) {    
-    var contract; 
+.factory('ENSService', function ($rootScope, $q, AppService) {
+    var contract;
     var address;
     var ens;
     var resolverContract ;
@@ -53,6 +53,11 @@ angular.module('podular.services')
                 this.address="0xe7410170f87102DF0055eB195163A03B7F2Bff4A";
                 this.publicResolver = this.resolverContract.at('0xb14fdee4391732ea9d2267054ead2084684c0ad8');
             }
+            if(networktype=="Private"){
+                this.suffix ="com"
+                this.address="0xe7410170f87102DF0055eB195163A03B7F2Bff4A";
+                this.publicResolver = this.resolverContract.at('0xb14fdee4391732ea9d2267054ead2084684c0ad8');
+            }
 
             this.ens = this.contract.at(this.address);
             this.testRegistrar = this.fifsRegistrarContract.at(this.ens.owner(this.namehash(this.suffix)));
@@ -73,7 +78,7 @@ angular.module('podular.services')
             var resolverAddress = this.ens.resolver(node);
             if(resolverAddress == '0x0000000000000000000000000000000000000000') {
                 //console.log(ens.address + " not found");
-                return "not found"; 
+                return "not found";
             }
             var result = this.resolverContract.at(resolverAddress).addr(node);
 
@@ -93,8 +98,8 @@ angular.module('podular.services')
 
             var addr = AppService.account() ; //limited only to your wallet addr
             var hname = this.namehash(name);
-            this.ens.setResolver(hname, this.publicResolver.address, 
-                {from: AppService.account(), gas: 180000, gasPrice: web3.eth.gasPrice}, 
+            this.ens.setResolver(hname, this.publicResolver.address,
+                {from: AppService.account(), gas: 180000, gasPrice: web3.eth.gasPrice},
                 function(err,res){
                     if(err) q.reject(err.message);
                     if(res) q.resolve("Resolver setted! " + res);
@@ -105,8 +110,8 @@ angular.module('podular.services')
         setAddress: function(name, addr){
             var q = $q.defer();
             var hname = this.namehash(name);
-            this.publicResolver.setAddr(hname, addr, 
-                {from: AppService.account(), gas: 180000, gasPrice: web3.eth.gasPrice}, 
+            this.publicResolver.setAddr(hname, addr,
+                {from: AppService.account(), gas: 180000, gasPrice: web3.eth.gasPrice},
                 function(err,res){
                     if(err) q.reject(err.message);
                     if(res) q.resolve("Resolver setted! " + res);
@@ -118,8 +123,8 @@ angular.module('podular.services')
             var q = $q.defer();
 
             //var expire = new Date(testRegistrar.expiryTimes(web3.sha3(name)).toNumber() * 1000)
-            this.testRegistrar.register(web3.sha3(name), address, 
-                {from: AppService.account(), gas: 180000, gasPrice: web3.eth.gasPrice}, 
+            this.testRegistrar.register(web3.sha3(name), address,
+                {from: AppService.account(), gas: 180000, gasPrice: web3.eth.gasPrice},
                 function(err,res){
                     if(err) q.reject(err.message);
                     if(res) q.resolve(res);
