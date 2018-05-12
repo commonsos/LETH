@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
 module.exports=[
   {
     "constant": true,
@@ -1176,7 +1176,7 @@ module.exports = SolidityTypeInt;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file param.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -1195,7 +1195,7 @@ var SolidityParam = function (value, offset) {
 
 /**
  * This method should be used to get length of params's dynamic part
- * 
+ *
  * @method dynamicPartLength
  * @returns {Number} length of dynamic part (in bytes)
  */
@@ -1223,7 +1223,7 @@ SolidityParam.prototype.withOffset = function (offset) {
  * @param {SolidityParam} result of combination
  */
 SolidityParam.prototype.combine = function (param) {
-    return new SolidityParam(this.value + param.value); 
+    return new SolidityParam(this.value + param.value);
 };
 
 /**
@@ -1255,8 +1255,8 @@ SolidityParam.prototype.offsetAsBytes = function () {
  */
 SolidityParam.prototype.staticPart = function () {
     if (!this.isDynamic()) {
-        return this.value; 
-    } 
+        return this.value;
+    }
     return this.offsetAsBytes();
 };
 
@@ -1288,7 +1288,7 @@ SolidityParam.prototype.encode = function () {
  * @returns {String}
  */
 SolidityParam.encodeList = function (params) {
-    
+
     // updating offsets
     var totalOffset = params.length * 32;
     var offsetParams = params.map(function (param) {
@@ -1730,13 +1730,13 @@ if (typeof XMLHttpRequest === 'undefined') {
 
 /**
  * Utils
- * 
+ *
  * @module utils
  */
 
 /**
  * Utility functions
- * 
+ *
  * @class [utils] config
  * @constructor
  */
@@ -1780,7 +1780,7 @@ module.exports = {
     ETH_SIGNATURE_LENGTH: 4,
     ETH_UNITS: ETH_UNITS,
     ETH_BIGNUMBER_ROUNDING_MODE: { ROUNDING_MODE: BigNumber.ROUND_DOWN },
-    ETH_POLLING_TIMEOUT: 20000/2,
+    ETH_POLLING_TIMEOUT: 1000/2,
     defaultBlock: 'latest',
     defaultAccount: undefined
 };
@@ -1803,7 +1803,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file sha3.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -1887,8 +1887,8 @@ var unitMap = {
     'microether':   '1000000000000',
     'micro':        '1000000000000',
     'finney':       '1000000000000000',
-    'milliether':    '1000000000000000',
-    'milli':         '1000000000000000',
+    'milliether':   '1000000000000000',
+    'milli':        '1000000000000000',
     'ether':        '1000000000000000000',
     'kether':       '1000000000000000000000',
     'grand':        '1000000000000000000000',
@@ -1974,18 +1974,24 @@ var toAscii = function(hex) {
  *
  * @method fromUtf8
  * @param {String} string
- * @param {Number} optional padding
+ * @param {Boolean} allowZero to convert code point zero to 00 instead of end of string
  * @returns {String} hex representation of input string
  */
-var fromUtf8 = function(str) {
+var fromUtf8 = function(str, allowZero) {
     str = utf8.encode(str);
     var hex = "";
     for(var i = 0; i < str.length; i++) {
         var code = str.charCodeAt(i);
-        if (code === 0)
-            break;
-        var n = code.toString(16);
-        hex += n.length < 2 ? '0' + n : n;
+        if (code === 0) {
+            if (allowZero) {
+                hex += '00';
+            } else {
+                break;
+            }
+        } else {
+            var n = code.toString(16);
+            hex += n.length < 2 ? '0' + n : n;
+        }
     }
 
     return "0x" + hex;
@@ -2034,15 +2040,22 @@ var transformToFullName = function (json) {
  * @returns {String} display name for function/event eg. multiply(uint256) -> multiply
  */
 var extractDisplayName = function (name) {
-    var length = name.indexOf('(');
-    return length !== -1 ? name.substr(0, length) : name;
+    var stBracket = name.indexOf('(');
+    var endBracket = name.indexOf(')');
+    return (stBracket !== -1 && endBracket !== -1) ? name.substr(0, stBracket) : name;
 };
 
-/// @returns overloaded part of function/event name
+/**
+ * Should be called to get type name of contract function
+ *
+ * @method extractTypeName
+ * @param {String} name of function/event
+ * @returns {String} type name for function/event eg. multiply(uint256) -> uint256
+ */
 var extractTypeName = function (name) {
-    /// TODO: make it invulnerable
-    var length = name.indexOf('(');
-    return length !== -1 ? name.substr(length + 1, name.length - 1 - (length + 1)).replace(' ', '') : "";
+    var stBracket = name.indexOf('(');
+    var endBracket = name.indexOf(')');
+    return (stBracket !== -1 && endBracket !== -1) ? name.substr(stBracket + 1, endBracket - stBracket - 1).replace(' ', '') : "";
 };
 
 /**
@@ -2098,7 +2111,7 @@ var toHex = function (val) {
         else if(val.indexOf('0x') === 0)
             return val;
         else if (!isFinite(val))
-            return fromAscii(val);
+            return fromUtf8(val,1);
     }
 
     return fromDecimal(val);
@@ -2156,7 +2169,6 @@ var fromWei = function(number, unit) {
  * - kwei       femtoether     babbage
  * - mwei       picoether      lovelace
  * - gwei       nanoether      shannon      nano
- * - --         microether     szabo        micro
  * - --         microether     szabo        micro
  * - --         milliether     finney       milli
  * - ether      --             --
@@ -2459,7 +2471,7 @@ module.exports = {
 
 },{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":84}],21:[function(require,module,exports){
 module.exports={
-    "version": "0.20.2"
+    "version": "0.20.6"
 }
 
 },{}],22:[function(require,module,exports){
@@ -2669,16 +2681,15 @@ AllSolidityEvents.prototype.encode = function (options) {
 
 AllSolidityEvents.prototype.decode = function (data) {
     data.data = data.data || '';
-    data.topics = data.topics || [];
 
-    var eventTopic = data.topics[0].slice(2);
+
+    var eventTopic = (utils.isArray(data.topics) && utils.isString(data.topics[0])) ? data.topics[0].slice(2) : '';
     var match = this._json.filter(function (j) {
         return eventTopic === sha3(utils.transformToFullName(j));
     })[0];
 
     if (!match) { // cannot find matching event?
-        console.warn('cannot find event for log');
-        return data;
+        return formatters.outputLogFormatter(data);
     }
 
     var event = new SolidityEvent(this._requestManager, match, this._address);
@@ -2723,7 +2734,7 @@ module.exports = AllSolidityEvents;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file batch.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -2768,7 +2779,7 @@ Batch.prototype.execute = function () {
                 requests[index].callback(null, (requests[index].format ? requests[index].format(result.result) : result.result));
             }
         });
-    }); 
+    });
 };
 
 module.exports = Batch;
@@ -2894,7 +2905,7 @@ var checkForContractAddress = function(contract, callback){
             } else {
 
                 contract._eth.getTransactionReceipt(contract.transactionHash, function(e, receipt){
-                    if(receipt && !callbackFired) {
+                    if(receipt && receipt.blockHash && !callbackFired) {
 
                         contract._eth.getCode(receipt.contractAddress, function(e, code){
                             /*jshint maxcomplexity: 6 */
@@ -2955,7 +2966,7 @@ var ContractFactory = function (eth, abi) {
      */
     this.new = function () {
         /*jshint maxcomplexity: 7 */
-        
+
         var contract = new Contract(this.eth, this.abi);
 
         // parse arguments
@@ -2987,7 +2998,7 @@ var ContractFactory = function (eth, abi) {
 
         if (callback) {
 
-            // wait for the contract address adn check if the code was deployed
+            // wait for the contract address and check if the code was deployed
             this.eth.sendTransaction(options, function (err, hash) {
                 if (err) {
                     callback(err);
@@ -3103,7 +3114,7 @@ module.exports = ContractFactory;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file errors.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -3276,6 +3287,7 @@ SolidityEvent.prototype.decode = function (data) {
     data.data = data.data || '';
     data.topics = data.topics || [];
 
+
     var argTopics = this._anonymous ? data.topics : data.topics.slice(1);
     var indexedData = argTopics.map(function (topics) { return topics.slice(2); }).join("");
     var indexedParams = coder.decodeParams(this.types(true), indexedData);
@@ -3378,7 +3390,7 @@ var extend = function (web3) {
         }
     };
 
-    ex.formatters = formatters; 
+    ex.formatters = formatters;
     ex.utils = utils;
     ex.Method = Method;
     ex.Property = Property;
@@ -4276,11 +4288,12 @@ var XHR2 = require('xhr2'); // jshint ignore: line
 /**
  * HttpProvider should be used to send rpc calls over http
  */
-var HttpProvider = function (host, timeout, user, password) {
+var HttpProvider = function (host, timeout, user, password, headers) {
   this.host = host || 'http://localhost:8545';
   this.timeout = timeout || 0;
   this.user = user;
   this.password = password;
+  this.headers = headers;
 };
 
 /**
@@ -4305,6 +4318,11 @@ HttpProvider.prototype.prepareRequest = function (async) {
     var auth = 'Basic ' + new Buffer(this.user + ':' + this.password).toString('base64');
     request.setRequestHeader('Authorization', auth);
   } request.setRequestHeader('Content-Type', 'application/json');
+  if(this.headers) {
+      this.headers.forEach(function(header) {
+          request.setRequestHeader(header.name, header.value);
+      });
+  }
   return request;
 };
 
@@ -4410,7 +4428,7 @@ module.exports = HttpProvider;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file iban.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -4610,7 +4628,7 @@ Iban.prototype.address = function () {
         var base36 = this._iban.substr(4);
         var asBn = new BigNumber(base36, 36);
         return padLeft(asBn.toString(16), 20);
-    } 
+    }
 
     return '';
 };
@@ -4655,7 +4673,7 @@ var IpcProvider = function (path, net) {
     var _this = this;
     this.responseCallbacks = {};
     this.path = path;
-    
+
     this.connection = net.connect({path: this.path});
 
     this.connection.on('error', function(e){
@@ -4665,7 +4683,7 @@ var IpcProvider = function (path, net) {
 
     this.connection.on('end', function(){
         _this._timeout();
-    }); 
+    });
 
 
     // LISTEN FOR CONNECTION RESPONSES
@@ -4704,7 +4722,7 @@ Will parse the response and make an array out of it.
 IpcProvider.prototype._parseResponse = function(data) {
     var _this = this,
         returnValues = [];
-    
+
     // DE-CHUNKER
     var dechunkedData = data
         .replace(/\}[\n\r]?\{/g,'}|--|{') // }{
@@ -4808,7 +4826,7 @@ IpcProvider.prototype.send = function (payload) {
         try {
             result = JSON.parse(data);
         } catch(e) {
-            throw errors.InvalidResponse(data);                
+            throw errors.InvalidResponse(data);
         }
 
         return result;
@@ -4983,7 +5001,7 @@ Method.prototype.extractCallback = function (args) {
 
 /**
  * Should be called to check if the number of arguments is correct
- * 
+ *
  * @method validateArgs
  * @param {Array} arguments
  * @throws {Error} if it is not
@@ -4996,7 +5014,7 @@ Method.prototype.validateArgs = function (args) {
 
 /**
  * Should be called to format input args of method
- * 
+ *
  * @method formatInput
  * @param {Array}
  * @return {Array}
@@ -5050,7 +5068,7 @@ Method.prototype.attachToObject = function (obj) {
         obj[name[0]] = obj[name[0]] || {};
         obj[name[0]][name[1]] = func;
     } else {
-        obj[name[0]] = func; 
+        obj[name[0]] = func;
     }
 };
 
@@ -5113,8 +5131,8 @@ var DB = function (web3) {
     this._requestManager = web3._requestManager;
 
     var self = this;
-    
-    methods().forEach(function(method) { 
+
+    methods().forEach(function(method) {
         method.attachToObject(self);
         method.setRequestManager(web3._requestManager);
     });
@@ -5539,7 +5557,7 @@ var Net = function (web3) {
 
     var self = this;
 
-    properties().forEach(function(p) { 
+    properties().forEach(function(p) {
         p.attachToObject(self);
         p.setRequestManager(web3._requestManager);
     });
@@ -6098,7 +6116,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file namereg.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -6285,7 +6303,7 @@ module.exports = Property;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file requestmanager.js
  * @author Jeffrey Wilcke <jeff@ethdev.com>
  * @author Marek Kotewicz <marek@ethdev.com>
@@ -6352,7 +6370,7 @@ RequestManager.prototype.sendAsync = function (data, callback) {
         if (err) {
             return callback(err);
         }
-        
+
         if (!Jsonrpc.isValidResponse(result)) {
             return callback(errors.InvalidResponse(result));
         }
@@ -6385,7 +6403,7 @@ RequestManager.prototype.sendBatch = function (data, callback) {
         }
 
         callback(err, results);
-    }); 
+    });
 };
 
 /**
@@ -6489,7 +6507,7 @@ RequestManager.prototype.poll = function () {
     }
 
     var payload = Jsonrpc.toBatchPayload(pollsData);
-    
+
     // map the request id to they poll id
     var pollsIdMap = {};
     payload.forEach(function(load, index){
@@ -6519,7 +6537,7 @@ RequestManager.prototype.poll = function () {
             } else
                 return false;
         }).filter(function (result) {
-            return !!result; 
+            return !!result;
         }).filter(function (result) {
             var valid = Jsonrpc.isValidResponse(result);
             if (!valid) {
@@ -6594,16 +6612,16 @@ var pollSyncing = function(self) {
 
         self.callbacks.forEach(function (callback) {
             if (self.lastSyncState !== sync) {
-                
+
                 // call the callback with true first so the app can stop anything, before receiving the sync data
                 if(!self.lastSyncState && utils.isObject(sync))
                     callback(null, true);
-                
+
                 // call on the next CPU cycle, so the actions of the sync stop can be processes first
                 setTimeout(function() {
                     callback(null, sync);
                 }, 0);
-                
+
                 self.lastSyncState = sync;
             }
         });
@@ -6658,7 +6676,7 @@ module.exports = IsSyncing;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file transfer.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -6677,7 +6695,7 @@ var exchangeAbi = require('../contracts/SmartExchange.json');
  * @param {Function} callback, callback
  */
 var transfer = function (eth, from, to, value, callback) {
-    var iban = new Iban(to); 
+    var iban = new Iban(to);
     if (!iban.isValid()) {
         throw new Error('invalid iban address');
     }
@@ -6685,7 +6703,7 @@ var transfer = function (eth, from, to, value, callback) {
     if (iban.isDirect()) {
         return transferToAddress(eth, from, iban.address(), value, callback);
     }
-    
+
     if (!callback) {
         var address = eth.icapNamereg().addr(iban.institution());
         return deposit(eth, from, address, value, iban.client());
@@ -6694,7 +6712,7 @@ var transfer = function (eth, from, to, value, callback) {
     eth.icapNamereg().addr(iban.institution(), function (err, address) {
         return deposit(eth, from, address, value, iban.client(), callback);
     });
-    
+
 };
 
 /**
@@ -13592,13 +13610,13 @@ module.exports = transfer;
 module.exports = XMLHttpRequest;
 
 },{}],"bignumber.js":[function(require,module,exports){
-/*! bignumber.js v4.0.0 https://github.com/MikeMcl/bignumber.js/LICENCE */
+/*! bignumber.js v4.1.0 https://github.com/MikeMcl/bignumber.js/LICENCE */
 
 ;(function (globalObj) {
     'use strict';
 
     /*
-      bignumber.js v4.0.0
+      bignumber.js v4.1.0
       A JavaScript library for arbitrary-precision arithmetic.
       https://github.com/MikeMcl/bignumber.js
       Copyright (c) 2017 Michael Mclaughlin <M8ch88l@gmail.com>
@@ -14229,7 +14247,7 @@ module.exports = XMLHttpRequest;
                 } else {
 
                     // Remove leading elements which are zero and adjust exponent accordingly.
-                    for ( e = -1 ; c[0] === 0; c.shift(), e -= LOG_BASE);
+                    for ( e = -1 ; c[0] === 0; c.splice(0, 1), e -= LOG_BASE);
 
                     // Count the digits of the first element of c to determine leading zeros, and...
                     for ( i = 1, v = c[0]; v >= 10; v /= 10, i++);
@@ -14322,7 +14340,7 @@ module.exports = XMLHttpRequest;
 
                         if ( !d ) {
                             ++e;
-                            xc.unshift(1);
+                            xc = [1].concat(xc);
                         }
                     }
                 }
@@ -14360,7 +14378,7 @@ module.exports = XMLHttpRequest;
                     x[i] = temp % base;
                 }
 
-                if (carry) x.unshift(carry);
+                if (carry) x = [carry].concat(x);
 
                 return x;
             }
@@ -14394,7 +14412,7 @@ module.exports = XMLHttpRequest;
                 }
 
                 // Remove leading zeros.
-                for ( ; !a[0] && a.length > 1; a.shift() );
+                for ( ; !a[0] && a.length > 1; a.splice(0, 1) );
             }
 
             // x: dividend, y: divisor.
@@ -14463,7 +14481,7 @@ module.exports = XMLHttpRequest;
                     // Add zeros to make remainder as long as divisor.
                     for ( ; remL < yL; rem[remL++] = 0 );
                     yz = yc.slice();
-                    yz.unshift(0);
+                    yz = [0].concat(yz);
                     yc0 = yc[0];
                     if ( yc[1] >= base / 2 ) yc0++;
                     // Not necessary, but to prevent trial digit n > base, when using base 3.
@@ -14534,7 +14552,7 @@ module.exports = XMLHttpRequest;
                                 prodL = prod.length;
                             }
 
-                            if ( prodL < remL ) prod.unshift(0);
+                            if ( prodL < remL ) prod = [0].concat(prod);
 
                             // Subtract product from remainder.
                             subtract( rem, prod, remL, base );
@@ -14575,7 +14593,7 @@ module.exports = XMLHttpRequest;
                     more = rem[0] != null;
 
                     // Leading zero?
-                    if ( !qc[0] ) qc.shift();
+                    if ( !qc[0] ) qc.splice(0, 1);
                 }
 
                 if ( base == BASE ) {
@@ -15285,7 +15303,7 @@ module.exports = XMLHttpRequest;
             }
 
             // Remove leading zeros and adjust exponent accordingly.
-            for ( ; xc[0] == 0; xc.shift(), --ye );
+            for ( ; xc[0] == 0; xc.splice(0, 1), --ye );
 
             // Zero?
             if ( !xc[0] ) {
@@ -15453,7 +15471,7 @@ module.exports = XMLHttpRequest;
             }
 
             if (a) {
-                xc.unshift(a);
+                xc = [a].concat(xc);
                 ++ye;
             }
 
@@ -15742,7 +15760,7 @@ module.exports = XMLHttpRequest;
             if (c) {
                 ++e;
             } else {
-                zc.shift();
+                zc.splice(0, 1);
             }
 
             return normalise( y, zc, e );
@@ -16309,7 +16327,7 @@ module.exports = XMLHttpRequest;
 
 
     BigNumber = constructorFactory();
-    BigNumber.default = BigNumber.BigNumber = BigNumber;
+    BigNumber['default'] = BigNumber.BigNumber = BigNumber;
 
 
     // AMD.
