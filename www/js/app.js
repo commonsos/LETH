@@ -103,10 +103,16 @@ var app = angular.module('podular', [
     if (typeof localStorage.Transactions == 'undefined') {localStorage.Transactions = '[]';}
     if (typeof localStorage.Tokens == 'undefined') {localStorage.Tokens = '[]';}
     if (typeof localStorage.NodeHost == 'undefined') {
-      localStorage.NodeHost = "http://54.95.150.65:8545";
+      localStorage.NodeHost = "https://network.commonsos.com:8545";
     }
+
+    // 20180516 force update node host
+    if (localStorage.NodeHost == "http://54.95.150.65:8545") {
+      localStorage.NodeHost = "https://network.commonsos.com:8545";
+    }
+
     if (typeof localStorage.HostsList == 'undefined') {
-      localStorage.HostsList=JSON.stringify(["http://54.95.150.65:8545","http://54.95.150.65:8545"]);
+      localStorage.HostsList=JSON.stringify(["https://network.commonsos.com:8545"]);
     }
 
     if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'JPY', symbol:'¥', value: 'ZJPY'});}
