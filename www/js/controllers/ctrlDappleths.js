@@ -1,7 +1,7 @@
-angular.module('podular.controllers')  
-  .controller('dapplethsCtrl', function ($rootScope, $scope, $state, angularLoad, $ionicLoading, 
-                                          $ionicListDelegate, $ionicPopup, $timeout, $templateRequest, 
-                                          $sce, $compile, $ionicSlideBoxDelegate, $http, 
+angular.module('podular.controllers')
+  .controller('dapplethsCtrl', function ($rootScope, $scope, $state, angularLoad, $ionicLoading,
+                                          $ionicListDelegate, $ionicPopup, $timeout, $templateRequest,
+                                          $sce, $compile, $ionicSlideBoxDelegate, $http,
                                           $cordovaInAppBrowser, AppService) {
     $ionicSlideBoxDelegate.start();
     $scope.nextSlide = function() {
@@ -33,7 +33,7 @@ angular.module('podular.controllers')
         }, function(err){
           $scope.listTokens=null;
         });
-    
+
       }, 1500);
     };
 
@@ -48,30 +48,30 @@ angular.module('podular.controllers')
           }
         })
         coin.Progress = false;
-        
+
         AppService.addLocalToken(coin);
 
       }, 1500);
       $ionicListDelegate.closeOptionButtons();
     };
   })
-  .controller('DapppodularRunCtrl', function ($scope, $rootScope, $ionicHistory, angularLoad, $ionicLoading, $templateRequest, 
-                                          $sce, $interpolate, $compile, 	$ionicSlideBoxDelegate, $http, $stateParams,$timeout, 
+  .controller('DapppodularRunCtrl', function ($scope, $rootScope, $ionicHistory, angularLoad, $ionicLoading, $templateRequest,
+                                          $sce, $interpolate, $compile, 	$ionicSlideBoxDelegate, $http, $stateParams,$timeout,
                                           AppService, Chat, DappService) {
     var id = $stateParams.Id;
     $scope.Dapp=[];
     $scope.Dapp.activeApp = $scope.listApps.filter( function(app) {return app.GUID==id;} )[0];
-    $scope.Dapp.activeApp.Path = $scope.getDappPath($scope.Dapp.activeApp.GUID,"");    
+    $scope.Dapp.activeApp.Path = $scope.getDappPath($scope.Dapp.activeApp.GUID,"");
     $scope.Dapp.activeApp.Url.Install = $scope.getDappPath($scope.Dapp.activeApp.GUID,$scope.Dapp.activeApp.Url.Install);
     $scope.Dapp.activeApp.Url.Script = $scope.getDappPath($scope.Dapp.activeApp.GUID,$scope.Dapp.activeApp.Url.Script);
 
     $scope.$on("$ionicView.enter", function () {
       $ionicHistory.clearCache();
     });
-    
-    $scope.$on("$ionicView.afterEnter", function () {    
+
+    $scope.$on("$ionicView.afterEnter", function () {
         angularLoad.loadScript($scope.Dapp.activeApp.Url.Script).then(function(result) {
-            dapppodular.run({scope: $scope, service: DappService});
+            dappleth.run({scope: $scope, service: DappService});
             $ionicLoading.hide();
         }).catch(function(err) {
             console.log('ERROR :' + $scope.Dapp.activeApp.Url.Script);
@@ -81,15 +81,15 @@ angular.module('podular.controllers')
     $scope.$on("$ionicView.beforeLeave", function () {
       $ionicHistory.clearCache();
 
-      dapppodular.exit();
+      dappleth.exit();
 
       angularLoad.resetScript($scope.Dapp.activeApp.Url.Script, "js");
-      removejscssfile($scope.Dapp.activeApp.Url.Script, "js"); 
+      removejscssfile($scope.Dapp.activeApp.Url.Script, "js");
 
       $scope.Dapp.activeApp=null;
-      dapppodular = null;
+      dappleth = null;
     });
-    
+
     $scope.refresh = function() {
       $scope.$broadcast('scroll.refreshComplete');
     }
@@ -117,7 +117,7 @@ angular.module('podular.controllers')
 
     $scope.isFromDapp = function(item){
       if($scope.Dapp.activeApp.GUID == item.guid)
-        return true; 
+        return true;
       return false;
     }
 
