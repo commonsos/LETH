@@ -1,10 +1,10 @@
 var express = require('express'),
     app = express();
 
-var forceSsl = require('force-ssl-heroku');
+var secure = require('ssl-express-www');
 
+app.use(secure);
 app.use(express.static('www'));
-app.use(forceSsl);
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.all('*', function(req, res, next) {
