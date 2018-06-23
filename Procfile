@@ -1,1 +1,1 @@
-web: node server.js
+web: ionic cordova run browser
