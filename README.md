@@ -1,8 +1,8 @@
-# LΞTH 
+# Commons Wallets 
 The Only mobile ligthwallet built with Ξthereum community in mind!
 
 # About
-LΞTH (Ligth Ξthereum Mobile Wallet) is the first hybrid mobile app to manage an Ethereum wallet built using Ionic framework with the aim to serve the open community.
+Commons Wallets (Ligth Ξthereum Mobile Wallet) is the first hybrid mobile app to manage an Ethereum wallet built using Ionic framework with the aim to serve the open community.
 
 # Features
 Thanks to the great job of library of ConsenSys (eth-lightwallet), the app could manage the key-pairs securely on smartphone side without send any password out of the wallet.
@@ -29,7 +29,7 @@ With podular you could:
 
 # Beta Testers
 Become a BETA tester, install the App and help the community to grow up.
-Visit <a href="http://www.commonsos.com">Inzhoop website</a>
+Visit <a href="http://www.commonsos.com">Commons OS website</a>
 
 
 # References
@@ -58,13 +58,5 @@ Test on browser in localhost:8100
 ```bash
 ionic serve
 ```
-
-# Screenshots
-<img src="https://www.commonsos.com/img/screenshots/IMG_0010.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0011.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0012.PNG" width="30%">  
-
-<img src="https://www.commonsos.com/img/screenshots/IMG_0013.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0014.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0015.PNG" width="30%">
-
-<img src="https://www.commonsos.com/img/screenshots/IMG_0016.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0017.PNG" width="30%">  <img src="https://www.commonsos.com/img/screenshots/IMG_0018.PNG" width="30%">
-
 # License
  GNU GENERAL PUBLIC LICENSE 3.0
