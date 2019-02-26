@@ -661,3 +661,9 @@ bottom: 150;
 .startPage .item-image {
   height: 500px;
 }
+
+
+.contentContainerScroll{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
