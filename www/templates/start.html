@@ -1,10 +1,8 @@
 <ion-modal-view>
-  <ion-content padding="true" fclass="start" >
+  <ion-content padding="true" scroll="false" fclass="start" >
     <div class="stepContainer" ng-switch="step">
-    	<div class="step startPage" ng-switch-when="0">
-		    <div class="item-image">
-		    	<img src="img/splash.png" />
-			</div>
+    	<div class="step startPage  background-login" ng-switch-when="0">
+
 			<div class="item-image">
 				<img src="img/offline.png" width="50%" ng-if="!isOnline"/>
 			</div>
