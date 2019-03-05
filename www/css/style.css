@@ -667,3 +667,9 @@ bottom: 150;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.background-login{
+    background-image:  url('../../img/splash.png');
+    background-position: center center;
+    background-size: 100% auto;
+}
