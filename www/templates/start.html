@@ -1,17 +1,19 @@
 <ion-modal-view>
-  <ion-content padding="true" scroll="false" fclass="start" >
+  <ion-content padding="false" scroll="false" fclass="start " >
     <div class="stepContainer" ng-switch="step">
-    	<div class="step startPage  background-login" ng-switch-when="0">
-
-			<div class="item-image">
-				<img src="img/offline.png" width="50%" ng-if="!isOnline"/>
-			</div>
-			<div class="list" ng-if="isOnline">
-				<!-- <button class="button button-block button-calm" ng-click="startNew()">{{'NEW_WALLET' | translate}}</button> -->
-				<button class="button button-block button-calm" ng-click="goMnemonic(' ')">{{'NEW_WALLET' | translate}}</button>
-				<button class="button button-block button-calm" ng-click="goStep(2)">{{'IMPORT_WALLET' | translate}}</button>
-			</div>
-		</div>
+    	<div class="step startPage padding-0 overflow-hidden" ng-switch-when="0">
+            <div class="item-image container-flex"  ng-if="!isOnline">
+                <img src="img/offline.png" style="max-height:100%; width:50%;"/>
+            </div>
+            <div class="item-image container-flex"  ng-if="isOnline">
+                <img src="img/splash.png" width="100%" />
+                <div class="list button-absolute" >
+                    <!-- <button class="button button-block button-calm" ng-click="startNew()">{{'NEW_WALLET' | translate}}</button> -->
+                    <button class="button button-block button-calm" ng-click="goMnemonic(' ')">{{'NEW_WALLET' | translate}}</button>
+                    <button class="button button-block button-calm" ng-click="goStep(2)">{{'IMPORT_WALLET' | translate}}</button>
+                </div>
+            </div>
+        </div>
 
     	<div class="step importPage" ng-switch-when="1">
 			<div class="bar bar-header bar-dark">
@@ -36,14 +38,12 @@
     		<div class="bar bar-header bar-dark">
     			<h1 class="title">お財布を復元</h1>
 				</div>
-				<div class="contentContainerScroll">
-			   		<p class="padding">あなた専用の復元キーワードを入力してください</p>
-		   		<div class="list card">
-		   			<div class="item item-input">
-		       			<textarea ng-model="randomSeed" rows="5" placeholder="type mnemonic 12 words"></textarea>
+				<p class="padding">あなた専用の復元キーワードを入力してください</p>
+				<div class="list">
+					<div class="item item-input">
+                        <textarea ng-model="randomSeed" rows="5" placeholder="type mnemonic 12 words"></textarea>
 		      		</div>
-		    	</div>
-	      		<button class="button button-block button-calm" ng-show="isValidMnemonic(randomSeed)"  ng-click="goStep(3)">次へ <i class="icon ion-chevron-right"></i></button>
+		      		<button class="button button-block button-calm" ng-show="isValidMnemonic(randomSeed)"  ng-click="goStep(3)">次へ <i class="icon ion-chevron-right"></i></button>
 			</div>
 			<div class="bar bar-footer bar-dark">
 				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> 戻る</a>
