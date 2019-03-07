@@ -645,6 +645,10 @@ bottom: 150;
   overflow-y: auto !important;
 }
 
+.overflow-hidden{
+  overflow: hidden;
+}
+
 .words {
   display: flex;
   flex-wrap: wrap;
@@ -668,8 +672,33 @@ bottom: 150;
   overflow-x: hidden;
 }
 
-.background-login{
-    background-image:  url('../../img/splash.png');
-    background-position: center center;
-    background-size: 100% auto;
+.background-min{
+    min-height:70%;
 }
+
+.container-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-absolute{
+    position: absolute;
+    width: 100%;
+    padding: 20px;
+    bottom: 0;
+}
+
+.padding-0{
+    padding:0;
+}
+
+.scroll-content {
+    padding-bottom: 0 !important;
+ }
+
+ .relative-contents{
+    position: relative;
+    display: block;
+    height: calc(100vh);
+ }
