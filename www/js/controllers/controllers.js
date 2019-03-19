@@ -47,6 +47,7 @@ angular.module('podular.controllers', [])
         $scope.balanceExc='N/A';
       });
     }
+    //$scope.readCoinsList()
     $scope.account = AppService.account();
     $scope.nick = AppService.idkey();
     $scope.qrcodeString = $scope.account + "/" + $scope.nick ;
