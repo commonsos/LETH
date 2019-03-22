@@ -95,6 +95,25 @@
     <plugin name="phonegap-nfc" spec="~0.6.6" />
     <plugin name="phonegap-plugin-barcodescanner" spec="git+https://github.com/phonegap/phonegap-plugin-barcodescanner.git" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
-    <engine name="android" spec="~6.4.0" />
-    <engine name="ios" spec="~4.4.0" />
+    <config-file parent="CFBundleDevelopmentRegion" target="*-Info.plist">
+        <array>
+            <string>Japanese</string>
+            <string>English</string>
+            <string>German</string>
+            <string>Italian</string>
+            <string>Spanish</string>
+        </array>
+    </config-file>
+    <config-file parent="CFBundleLocalizations" target="*-Info.plist">
+        <array>
+            <string>ja</string>
+            <string>en</string>
+            <string>de</string>
+            <string>it</string>
+            <string>es</string>
+        </array>
+    </config-file>
+    <plugin name="cordova-plugin-localization-strings" spec="https://github.com/kelvinhokk/cordova-plugin-localization-strings.git" />
+    <engine name="android" spec="^6.2.3" />
+    <engine name="ios" spec="^4.5.4" />
 </widget>
