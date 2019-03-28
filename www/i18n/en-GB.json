@@ -48,5 +48,14 @@
   "CONTACT":"Contact",
   "CHOOSETOSHARE": "Choose to share your",
   "NEW_WALLET": "New Wallet",
-  "IMPORT_WALLET": "Import Wallet"
+  "IMPORT_WALLET": "Import Wallet",
+  "GENERATE_ID": "GENERATE ID",
+  "RESTORE_KEY": "Your own restore keyword is",
+  "TOKEN_NAV": "Token",
+  "MONEY_TRANSFER": "Money Transfer",    
+  "WALLET_DES_ADDRESS": "Destination address",
+  "WALLET_BALANCE": " Balance",
+  "WALLET_ENTER_SCAN": "Enter address or use camera scan",
+  "WALLET_HISTORY": "Trading History"
+
 }

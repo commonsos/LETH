@@ -48,5 +48,14 @@
   "CONTACT":"Contatto",
   "CHOOSETOSHARE": "Scegli di condividere",
   "NEW_WALLET": "Crea Wallet",
-  "IMPORT_WALLET": "Importa Wallet"
+  "IMPORT_WALLET": "Importa Wallet",
+  "GENERATE_ID": "Genera ID",
+  "RESTORE_KEY": "Your own restore keyword is",
+  "TOKEN_NAV": "Token",
+  "MONEY_TRANSFER": "trasferimento di denaro",
+  "WALLET_DES_ADDRESS": "Überweisung",
+  "WALLET_BALANCE": " Equilibrio",
+  "WALLET_ENTER_SCAN": "Inserisci l'indirizzo o utilizza la scansione della fotocamera",
+  "WALLET_HISTORY": "Storia del trading"
+
 }

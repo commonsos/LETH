@@ -7,7 +7,7 @@
         <img ng-src="{{logoCoin}}" ng-click="scrollRefresh()"/>
         <label id="{{idCoin}}"><b>{{balance | currency:symbolCoin+' ':decimals}} </b><span class="subdued">({{balanceExc}})</span></label>
         <p>
-          <label >{{descCoin}}</label>
+          <label >{{descCoin}}{{'WALLET_BALANCE' | translate}}</label>
         </p>
         <span><i class="icon ion-android-more-vertical" ng-click="chooseCoin()"></i>
         </span>
@@ -16,14 +16,14 @@
       <div class="item">
         <div class="item item-input item-stacked-label item-icon-right">
           <span class="input-label">
-            <laberl class="item-floating-label">送り先のアドレス</label>
+            <laberl class="item-floating-label">{{'WALLET_DES_ADDRESS' | translate}}</label>
             <laberl class="item-floating-label">{{ENSResolved | strLimit: 15 : 3}}</label>
             <label class="item-floating-label" ng-show="isFriend(addrTo)">{{isFriend(addrTo) | strLimit: 15 : 3}}</label>
             <i class="icon ion-ios-person-outline positive" ng-show="!addrTo.length" ng-click="openFriendsModal()"></i>
           </span>
           <span class="item-note">{{balAddrTo | currency:symbolCoin+' ':decimals}}</span>
           <i class="icon ion-ios-personadd-empty positive" ng-show="isFriend(addrTo)=='' && isValidAddr(addrTo)" ng-click="addAddress(addrTo,addrKey)"></i>
-          <input type="text" ng-model="addrTo" placeholder="アドレスを入力するか、カメラのスキャンを利用してください" ng-required="true"/>
+          <input type="text" ng-model="addrTo" placeholder="{{'WALLET_ENTER_SCAN' | translate}}" ng-required="true"/>
         </div>
         <div class="item item-input item-select">
              <input type="number" pattern="-?\d+(\.\d+)?" ng-model="amountTo" placeholder="0.00">
@@ -37,13 +37,13 @@
             <input type="range" ng-model="fee"  min="{{minFee}}" max="{{maxFee}}" step="{{step}}" value="{{fee}}" ng-init="fee" ng-change="setFee(fee)">
           </div>
         </div>
-        <button ng-disabled="!unit || !amountTo>0 || !isValidAddr(addrTo)" class="button button-block button-energized" ng-click="confirmSend(addrTo,amountTo,unit,idCoin)"><i class="icon ion-paper-airplane"></i> 送金
+        <button ng-disabled="!unit || !amountTo>0 || !isValidAddr(addrTo)" class="button button-block button-energized" ng-click="confirmSend(addrTo,amountTo,unit,idCoin)"><i class="icon ion-paper-airplane"></i> {{'MONEY_TRANSFER' | translate}}
         </button>
         </div>
         <div class="item tabs row" ng-hide='true' fordev>
           <div class="col col-10"></div>
           <div class="col col-30">
-            <button class="button button-icon icon ion-ios-list-outline dark" ng-disabled="!transactions.length" ng-click="listTransaction()"> 取引履歴</button>
+            <button class="button button-icon icon ion-ios-list-outline dark" ng-disabled="!transactions.length" ng-click="listTransaction()"> {{'WALLET_HISTORY' | translate}}</button>
           </div>
           <div class="col col-30"></div>
           <div class="col col-30"></div>
