@@ -56,6 +56,27 @@
   "WALLET_DES_ADDRESS": "Zieladresse",
   "WALLET_BALANCE": " Balance",
   "WALLET_ENTER_SCAN": "Adresse eingeben oder Kamera scannen",
-  "WALLET_HISTORY": "Handelsgeschichte"
+  "WALLET_HISTORY": "Handelsgeschichte",
+  "WALLET_FEE": "Gebühr",
+  "LOGIN_MOBILE_PRETENT": "Wenn Sie vorgeben, mobil zu sein, wird ein Passwort vergeben!",
+  "LOGIN_SKIP": "ÜBERSPRINGEN",
+  "LOGIN_BACK": "ZURÜCK",
+  "LOGIN_RESTORE": "Stellen Sie Ihre Geldbörse wieder her",
+  "LOGIN_RECOVERY_REQUIRED": "Bitte geben Sie Ihr Wiederherstellungsschlüsselwort ein",
+  "LOGIN_NEXT": "NÄCHSTER",
+  "LOGIN_WALLET_SAFE": "Machen Sie Ihre Brieftasche sicher.",
+  "LOGIN_KEYWORD_DES": "Noteer dit trefwoord op een vel papier of sla het op als een screenshot en maak het onzichtbaar voor iedereen. Dit herstelzoekwoord is vereist om de ID te herstellen. Als uw wachtwoord is gelekt, kan iedereen uw COM stelen.",
+  "LOGIN_RECONFIRM_KEYWORD": "Wiederherstellen der Schlüsselwörter für die Wiederherstellung",
+  "LOGIN_ORDER_KEYWORD": "Bitte bestellen Sie die obigen Wiederherstellungsschlüsselwörter in der angegebenen Reihenfolge",
+  "LOGIN_O12_WORD": "12 Wörter",
+  "LOGIN_ENCRYPT": "Verschlüsseln Sie Ihre Geldbörse",
+  "LOGIN_PASS_MSG": "Bitte geben Sie ein Passwort ein, das mindestens einen Buchstaben mit 8 bis 20 Groß- und Kleinbuchstaben enthält.",
+  "LOGIN_PASS": "Passwort",
+  "LOGIN_CONFIRM_PASS": "Passwort bestätigen",
+  "LOGIN_PIN": "PIN-Code (vierstellige Nummer)",
+  "LOGIN_ISSUE": "Gib deine Brieftasche aus",
+  "LOGIN_PASS_ERR_MSG": "Das Passwort muss mindestens einen 8 bis 20 Groß- und Kleinbuchstaben enthalten.",
+  "LOGIN_CONFIRM_PASS_ERR_MSG": "Passwörter stimmen nicht überein",
+  "LOGIN_PIN_ERR_MSG": "Der Code besteht nicht aus vier Buchstaben"
    
 }

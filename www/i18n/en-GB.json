@@ -56,6 +56,31 @@
   "WALLET_DES_ADDRESS": "Destination address",
   "WALLET_BALANCE": " Balance",
   "WALLET_ENTER_SCAN": "Enter address or use camera scan",
-  "WALLET_HISTORY": "Trading History"
+  "WALLET_HISTORY": "Trading History",
+  "WALLET_FEE": "FEE",
+  "LOGIN_MOBILE_PRETENT": "If you pretend to be mobile, a password will be issued!",
+  "LOGIN_SKIP": "SKIP",
+  "LOGIN_BACK": "BACK",
+  "LOGIN_RESTORE": "Restore your wallet",
+  "LOGIN_RECOVERY_REQUIRED": "Please enter your recovery keyword",
+  "LOGIN_NEXT": "NEXT",
+  "LOGIN_WALLET_SAFE": "Make your wallet safe.",
+  "LOGIN_KEYWORD_DES": "Make a note of this keyword on a piece of paper or save it as a screenshot, and make it invisible to anyone. This restore keyword is required to restore the ID. If your password is leaked, anyone can steal your COM.",
+  "LOGIN_RECONFIRM_KEYWORD": "Reconfirm restore keywords",
+  "LOGIN_ORDER_KEYWORD": "Please order the above restoration keywords in order",
+  "LOGIN_O12_WORD": "12 words",
+  "LOGIN_ENCRYPT": "Encrypt your wallet",
+  "LOGIN_PASS_MSG": "Please enter a password that contains at least one letter of 8 to 20 upper and lower case letters.",
+  "LOGIN_PASS": "Password",
+  "LOGIN_CONFIRM_PASS": "Confirm password",
+  "LOGIN_PIN": "PIN code (four-character number)",
+  "LOGIN_ISSUE": "Issue your wallet",
+  "LOGIN_PASS_ERR_MSG": "The password must contain at least one 8 to 20 uppercase and lowercase letters.",
+  "LOGIN_CONFIRM_PASS_ERR_MSG": "Passwords do not match",
+  "LOGIN_PIN_ERR_MSG": "The code is not a four letter number"
+
+
+
+  
 
 }

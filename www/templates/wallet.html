@@ -33,7 +33,7 @@
         </div>
         <div class="list">
           <div class="item range range-positive" ng-hide='true' fordev>
-            <span class="item-note">手数料 {{feeLabel}} {{symbolFee}}</span>
+            <span class="item-note">{{'WALLET_FEE' | translate}} {{feeLabel}} {{symbolFee}}</span>
             <input type="range" ng-model="fee"  min="{{minFee}}" max="{{maxFee}}" step="{{step}}" value="{{fee}}" ng-init="fee" ng-change="setFee(fee)">
           </div>
         </div>
