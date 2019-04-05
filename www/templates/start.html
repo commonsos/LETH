@@ -114,7 +114,7 @@
 					</label>
 
 					<label class="item item-input" ng-show="confirmPassword">
-							<span class="input-label">{{'LOGIN_CONFIRM_PIN' | translate}}</span>
+							<span class="input-label">{{'LOGIN_PIN' | translate}}</span>
 							<input type="password" ng-model="code" name="code" placeholder="PIN" pattern="[0-9]*" maxlength="4" minlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
 					</label>
 					<button ng-show="login.$valid && password==confirmPassword" class="button button-block button-calm" type="submit">
