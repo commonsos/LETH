@@ -58,5 +58,20 @@ Test on browser in localhost:8100
 ```bash
 ionic serve
 ```
+
+ANDROID RELEASE
+```
+IONIC ANDROID RELEASE
+- ionic cordova build --release android
+
+JARSIGNER APK KEYSTORE
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore [realease_file.apk] commons-wallet
+
+GO TO ANDROID SDK FOLDER EX: C:\Users\Andy\AppData\Local\Android\Sdk\build-tools\27.0.3
+
+- zipalign -v 4 [RELEASE APK] [OUTPUT APK]
+EX : zipalign -v 4 D:\jELLYFISH\commons-wallets-bk\commons-wallet.apk D:\jELLYFISH\commons-wallets-bk\commons-walletsout.apk
+
+```
 # License
  GNU GENERAL PUBLIC LICENSE 3.0

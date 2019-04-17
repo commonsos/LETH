@@ -114,6 +114,7 @@
         </array>
     </config-file>
     <plugin name="cordova-plugin-localization-strings" spec="https://github.com/kelvinhokk/cordova-plugin-localization-strings.git" />
+    <access origin="*" />
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.5.4" />
 </widget>
