@@ -1,0 +1,5 @@
+{
+  "config_ios" : {
+    "NSCameraUsageDescription": "Diese App verwendet die Kamera zum Lesen von QR-Codes."
+  }
+}

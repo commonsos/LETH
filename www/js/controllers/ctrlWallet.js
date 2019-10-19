@@ -9,7 +9,7 @@ angular.module('podular.controllers')
       if(index==0){
         $scope.idCoin = 0;
         $scope.logoCoin = "img/com-icon.png";
-        $scope.descCoin = "COMの残高";
+        $scope.descCoin = "COM";
         if($scope.nameNetwork=="Main-ETC"){
           $scope.symbolCoin = "COM";
           $scope.xCoin = "XETC";

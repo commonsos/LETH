@@ -48,5 +48,39 @@
   "CONTACT":"Contatto",
   "CHOOSETOSHARE": "Scegli di condividere",
   "NEW_WALLET": "Crea Wallet",
-  "IMPORT_WALLET": "Importa Wallet"
+  "IMPORT_WALLET": "Importa Wallet",
+  "GENERATE_ID": "Genera ID",
+  "RESTORE_KEY": "Your own restore keyword is",
+  "TOKEN_NAV": "Token",
+  "MONEY_TRANSFER": "trasferimento di denaro",
+  "WALLET_DES_ADDRESS": "Überweisung",
+  "WALLET_BALANCE": " Equilibrio",
+  "WALLET_ENTER_SCAN": "Inserisci l'indirizzo o utilizza la scansione della fotocamera",
+  "WALLET_HISTORY": "Storia del trading",
+  "WALLET_FEE": "tassa",
+  "LOGIN_MOBILE_PRETENT": "Se fingi di essere mobile, verrà inviata una password!",
+  "LOGIN_SKIP": "SALTA",
+  "LOGIN_BACK": "INDIETRO",
+  "LOGIN_RESTORE": "Ripristina il tuo portafoglio",
+  "LOGIN_RECOVERY_REQUIRED": "Inserisci la tua parola chiave di recupero",
+  "LOGIN_NEXT": "IL PROSSIMO",
+  "LOGIN_WALLET_SAFE": "Rendi il tuo portafoglio sicuro.",
+  "LOGIN_KEYWORD_DES": "Annota questa parola chiave su un pezzo di carta o salvala come screenshot e rendila invisibile a chiunque. Questa parola chiave di ripristino è necessaria per ripristinare l'ID. Se la tua password è trapelata, chiunque può rubare il tuo COM.",
+  "LOGIN_RECONFIRM_KEYWORD": "Confermare ripristinare le parole chiave",
+  "LOGIN_ORDER_KEYWORD": "Si prega di ordinare le parole chiave di ripristino sopra in ordine",
+  "LOGIN_O12_WORD": "12 parole",
+  "LOGIN_ENCRYPT": "Cripta il tuo portafoglio",
+  "LOGIN_PASS_MSG": "Inserisci una password che contenga almeno una lettera da 8 a 20 lettere maiuscole e minuscole.",
+  "LOGIN_PASS": "Parola d'ordine",
+  "LOGIN_CONFIRM_PASS": "Conferma la password",
+  "LOGIN_PIN": "Codice PIN (numero di quattro caratteri)",
+  "LOGIN_ISSUE": "Emetti il tuo portafoglio",
+  "LOGIN_PASS_ERR_MSG": "La password deve contenere almeno da 8 a 20 lettere maiuscole e minuscole.",
+  "LOGIN_CONFIRM_PASS_ERR_MSG": "le passwords non corrispondono",
+  "LOGIN_PIN_ERR_MSG": "Il codice non è un numero di quattro lettere"
+
+
+  
+
+
 }

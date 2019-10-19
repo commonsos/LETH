@@ -1,129 +1,135 @@
 <ion-modal-view>
-  <ion-content padding="true" class="start" >
+  <ion-content padding="false" scroll="false" fclass="start " >
     <div class="stepContainer" ng-switch="step">
-    	<div class="step startPage" ng-switch-when="0">
-		    <div class="item-image">
-		    	<img src="img/splash.png" />
-			</div>
-			<div class="item-image">
-				<img src="img/offline.png" width="50%" ng-if="!isOnline"/>
-			</div>
-			<div class="list" ng-if="isOnline">
-				<!-- <button class="button button-block button-calm" ng-click="startNew()">{{'NEW_WALLET' | translate}}</button> -->
-				<button class="button button-block button-calm" ng-click="goMnemonic(' ')">{{'NEW_WALLET' | translate}}</button>
-				<button class="button button-block button-calm" ng-click="goStep(2)">{{'IMPORT_WALLET' | translate}}</button>
-			</div>
-		</div>
+    	<div class="step startPage padding-0 overflow-hidden" ng-switch-when="0">
+            <div class="item-image container-flex"  ng-if="!isOnline">
+                <img src="img/offline.png" style="max-height:100%; width:50%;"/>
+            </div>
+            <div class="item-image container-flex"  ng-if="isOnline">
+                <img src="img/splash.png" width="100%" />
+                <div class="list button-absolute" >
+                    <!-- <button class="button button-block button-calm" ng-click="startNew()">{{'NEW_WALLET' | translate}}</button> -->
+                    <button class="button button-block button-calm" ng-click="goMnemonic(' ')">{{'NEW_WALLET' | translate}}</button>
+                    <button class="button button-block button-calm" ng-click="goStep(2)">{{'IMPORT_WALLET' | translate}}</button>
+                </div>
+            </div>
+        </div>
 
     	<div class="step importPage" ng-switch-when="1">
 			<div class="bar bar-header bar-dark">
-    			<h1 class="title">IDを生成する</h1>
+    			<h1 class="title">{{'GENERATE_ID' | translate}}</h1>
     		</div>
-		      <div class="item">
-		        <i class="badge badge-balanced">- {{shakeCounter}}</i>
-		        <h2>携帯をふりふりするとパスワードが発行されるよ！</h2>
-		      </div>
-		    <div class="item-image">
-		        <img class="{{classShake}}" ng-src="img/shake{{shakeCounter}}.png"/>
-		    </div>
-		    <button class="button button-block button-calm " ng-click="goMnemonic('')">とばす <i class="ion-ios-fastforward"></i></button>
+			<div class="contentContainerScroll">
+		      	<div class="item">
+		        	<i class="badge badge-balanced">- {{shakeCounter}}</i>
+		        	<h2>{{'LOGIN_MOBILE_PRETENT' | translate}}</h2>
+		      	</div>
+		    	<div class="item-image">
+		        	<img class="{{classShake}}" ng-src="img/shake{{shakeCounter}}.png"/>
+		    	</div>
+		    	<button class="button button-block button-calm " ng-click="goMnemonic('')">{{'LOGIN_SKIP' | translate}} <i class="ion-ios-fastforward"></i></button>
+			</div>
 			<div class="bar bar-footer bar-dark">
-				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> 戻る</a>
+				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
 			</div>
 		</div>
 
     	<div class="step importPage" ng-switch-when="2">
     		<div class="bar bar-header bar-dark">
-    			<h1 class="title">お財布を復元</h1>
-    		</div>
-		    <p class="padding">あなた専用の復元キーワードを入力してください</p>
-		    <div class="list card">
-		      <div class="item item-input">
-		        <textarea ng-model="randomSeed" rows="5" placeholder="type mnemonic 12 words"></textarea>
-		      </div>
-		    </div>
-	      	<button class="button button-block button-calm" ng-show="isValidMnemonic(randomSeed)"  ng-click="goStep(3)">次へ <i class="icon ion-chevron-right"></i></button>
-
+    			<h1 class="title">{{'LOGIN_RESTORE' | translate}}</h1>
+				</div>
+				<p class="padding">{{'LOGIN_RECOVERY_REQUIRED' | translate}}</p>
+				<div class="list">
+					<div class="item item-input">
+                        <textarea ng-model="randomSeed" rows="5" placeholder="type mnemonic 12 words"></textarea>
+		      		</div>
+		      		<button class="button button-block button-calm" ng-show="isValidMnemonic(randomSeed)"  ng-click="goStep(3)">{{'LOGIN_NEXT' | translate}} <i class="icon ion-chevron-right"></i></button>
+			</div>
 			<div class="bar bar-footer bar-dark">
-				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> 戻る</a>
+				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
 			</div>
 		</div>
 
     	<div class="step importPage" ng-switch-when="3">
     		<div class="bar bar-header bar-dark">
-    			<h1 class="title">お財布を安全に。</h1>
-    		</div>
-			<div class="list">
-		      <div class="card button-rigth">
-		        <div class="item item-text-wrap">
-		          <p>あなた専用の復元キーワードは</p><br/>
-		          <p><b>{{randomSeed}}</b></p><br/>
-		          <p class="subdued">です。このキーワードは紙にメモするか、スクリーンショットで保存した上で、誰にも見せないようにしてください。この復元キーワードはIDの復元に必要です。ただパスワードが流出してしまうと、誰でもあなたのCOMを盗むことができます。</p>
-		        </div>
-		      </div>
-		    </div>
-		    <button class="button button-block button-calm" ng-click="goStep(4)">次へ <i class="icon ion-chevron-right"></i></button>
-		    <div class="bar bar-footer bar-dark">
-				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> 戻る</a>
-			</div>
+    			<h1 class="title">{{'LOGIN_WALLET_SAFE' | translate}}</h1>
+				</div>
+				<div class="contentContainerScroll">
+					<div class="list">
+							<div class="card button-rigth">
+								<div class="item item-text-wrap">
+									<p>{{'RESTORE_KEY' | translate}}</p><br/>
+									<p><b>{{randomSeed}}</b></p><br/>
+									<p class="subdued">{{'LOGIN_KEYWORD_DES' | translate}}</p>
+								</div>
+							</div>
+						</div>
+						<button class="button button-block button-calm" ng-click="goStep(4)">{{'LOGIN_NEXT' | translate}} <i class="icon ion-chevron-right"></i></button>	
+				</div>
+				<div class="bar bar-footer bar-dark" >
+					<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
+				</div>
 		</div>
 
 		<div class="step importPage" ng-switch-when="4">
 			<div class="bar bar-header bar-dark">
-    			<h1 class="title">復元キーワードを再確認する</h1>
-    		</div>
-    		<p class="padding">先ほどの復元キーワードを順番にならびかえてください</p>
-			<div class="words padding">
-				<button ng-repeat="w in mnemonicWords | orderBy:'text'" ng-model="w.index" class="button word button-positive button-outline" ng-hide="inVerified(w)" ng-click="verifyWord(w)">{{w.text}}</button>
-			</div>
-    		<p class="padding" ng-show="verifiedWords.length">12個の単語:</p>
-			<tags-input ng-model="verifiedWords" ng-show="verifiedWords.length" placeholder="click on the words" key-property="index" display-property="text" ></tags-input>
+    			<h1 class="title">{{'LOGIN_RECONFIRM_KEYWORD' | translate}}</h1>
+				</div>
+				<div class="contentContainerScroll">
+    			<p class="padding">{{'LOGIN_ORDER_KEYWORD' | translate}}</p>
+					<div class="words padding">
+						<button ng-repeat="w in mnemonicWords | orderBy:'text'" ng-model="w.index" class="button word button-positive button-outline" ng-hide="inVerified(w)" ng-click="verifyWord(w)">{{w.text}}</button>
+					</div>
+    			<p class="padding" ng-show="verifiedWords.length">{{'LOGIN_O12_WORD' | translate}}</p>
+					<tags-input ng-model="verifiedWords" ng-show="verifiedWords.length" placeholder="click on the words" key-property="index" display-property="text" ></tags-input>
 
 
-			<button class="button button-block button-calm" ng-show="isVerifiedMnemonic()" ng-click="goStep(5)">次へ <i class="icon ion-chevron-right"></i></button>
-		    <div class="bar bar-footer bar-dark">
-				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> 戻る</a>
-			</div>
+					<button class="button button-block button-calm" ng-show="isVerifiedMnemonic()" ng-click="goStep(5)">{{'LOGIN_NEXT' | translate}} <i class="icon ion-chevron-right"></i></button>
+						<div class="bar bar-footer bar-dark">
+						<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
+					</div>
 
-			<button class="button button-block button-calm" ng-click="goStep(5)">次へ <i class="icon ion-chevron-right"></i></button>
-		    <div class="bar bar-footer bar-dark">
-				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> 戻る</a>
-			</div>
+				</div>
+				<div class="bar bar-footer bar-dark">
+					<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
+				</div>
 		</div>
 
 		<div class="step importPage" ng-switch-when="5">
 			<div class="bar bar-header bar-dark">
-    			<h1 class="title">お財布を暗号化する</h1>
-    		</div>
-			<p class="padding">8桁から20桁の大文字小文字数字がそれぞれ最低一文字入っているパスワードを入力してください</p>
-			<div class="list">
-        	<form name="login" ng-submit="Login(randomSeed,password,code)">
-				<label class="item item-input">
-				    <span class="input-label">パスワード</span>
-				    <input type="password" ng-model="password" name="password" required placeholder="Password" minlength="8" maxlength="20" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
-				</label>
+    			<h1 class="title">{{'LOGIN_ENCRYPT' | translate}}</h1>
+				</div>
+				<div class="contentContainerScroll">
+				<p class="padding">{{'LOGIN_PASS_MSG' | translate}}</p>
+				<div class="list">
+						<form name="login" ng-submit="Login(randomSeed,password,code)">
+					<label class="item item-input">
+							<span class="input-label">{{'LOGIN_PASS' | translate}}</span>
+							<input type="password" ng-model="password" name="password" required placeholder="Password" minlength="8" maxlength="20" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+					</label>
 
-				<label class="item item-input" ng-show="password">
-				    <span class="input-label">パスワードの確認</span>
-				    <input type="password" ng-model="confirmPassword" name="confirmPassword" placeholder="Confirm" minlength="8" maxlength="20" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
-				</label>
+					<label class="item item-input" ng-show="password">
+							<span class="input-label">{{'LOGIN_CONFIRM_PASS' | translate}}</span>
+							<input type="password" ng-model="confirmPassword" name="confirmPassword" placeholder="Confirm" minlength="8" maxlength="20" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+					</label>
 
-				<label class="item item-input" ng-show="confirmPassword">
-				    <span class="input-label">PINコード（４文字の数字）</span>
-				    <input type="password" ng-model="code" name="code" placeholder="PIN" pattern="[0-9]*" maxlength="4" minlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
-				</label>
-				<button ng-show="login.$valid && password==confirmPassword" class="button button-block button-calm" type="submit">
-		           <i class="icon ion-flag" ng-hide="!login.$valid || confirmPassword!=password"></i>&nbsp;お財布を発行する
-		        </button>
-		        <ul class="assertive">
-		            <li ng-show="login.password.$dirty && login.password.$invalid ">* パスワードは8桁から20桁の大文字小文字数字が最低一文字入っている必要があります</li>
-		            <li ng-show="login.confirmPassword.$dirty && password!=confirmPassword">* パスワードが一致しません</li>
-		            <li ng-show="login.code.$dirty && login.code.$invalid">* コードが４文字の数字ではありません</li>
-		        </ul>
-		    </form>
+					<label class="item item-input" ng-show="confirmPassword">
+							<span class="input-label">{{'LOGIN_PIN' | translate}}</span>
+							<input type="password" ng-model="code" name="code" placeholder="PIN" pattern="[0-9]*" maxlength="4" minlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+					</label>
+					<button ng-show="login.$valid && password==confirmPassword" class="button button-block button-calm" type="submit">
+								<i class="icon ion-flag" ng-hide="!login.$valid || confirmPassword!=password"></i>&nbsp;{{'LOGIN_ISSUE' | translate}}
+							</button>
+							<ul class="assertive">
+									<li ng-show="login.password.$dirty && login.password.$invalid ">* {{'LOGIN_PASS_ERR_MSG' | translate}}</li>
+									<li ng-show="login.confirmPassword.$dirty && password!=confirmPassword">* {{'LOGIN_CONFIRM_PASS_ERR_MSG' | translate}}</li>
+									<li ng-show="login.code.$dirty && login.code.$invalid">* {{'LOGIN_PIN_ERR_MSG' | translate}}</li>
+							</ul>
+					</form>
+			</div>
 		</div>
 		<div class="bar bar-footer bar-dark">
-			<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> 戻る</a>
+			<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
 		</div>
 	</div>
   </ion-content>
