@@ -77,6 +77,6 @@
   "LOGIN_ISSUE": "Emita su billetera",
   "LOGIN_PASS_ERR_MSG": "La contraseña debe contener al menos una 8 a 20 letras mayúsculas y minúsculas.",
   "LOGIN_CONFIRM_PASS_ERR_MSG": "Las contraseñas no coinciden",
-  "LOGIN_PIN_ERR_MSG": "El código no es un número de cuatro letras."
-
+  "LOGIN_PIN_ERR_MSG": "El código no es un número de cuatro letras.",
+  "SKIP_NEMONICS": "omitir"
 }

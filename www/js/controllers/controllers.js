@@ -757,6 +757,11 @@ angular.module('podular.controllers', [])
     return match;
   }
 
+  $scope.skipMnemonics = function(){
+    $scope.verifiedWords = $scope.mnemonicWords;
+    $scope.goStep(5);
+  }
+
   $scope.createWallet = function (seed, password, code) {
     if(!lightwallet.keystore.isSeedValid(seed)){
       var alertPopup = $ionicPopup.alert({

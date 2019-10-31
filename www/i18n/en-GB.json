@@ -77,10 +77,6 @@
   "LOGIN_ISSUE": "Issue your wallet",
   "LOGIN_PASS_ERR_MSG": "The password must contain at least one 8 to 20 uppercase and lowercase letters.",
   "LOGIN_CONFIRM_PASS_ERR_MSG": "Passwords do not match",
-  "LOGIN_PIN_ERR_MSG": "The code is not a four letter number"
-
-
-
-  
-
+  "LOGIN_PIN_ERR_MSG": "The code is not a four letter number",
+  "SKIP_NEMONICS": "Skip"
 }
