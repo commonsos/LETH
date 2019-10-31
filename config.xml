@@ -85,15 +85,6 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
-    <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
-    <plugin name="cordova-plugin-file" spec="~3.0.0" />
-    <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
-    <plugin name="cordova-plugin-http" spec="~1.2.0" />
-    <plugin name="cordova-plugin-local-notification" spec="git+https://github.com/katzer/cordova-plugin-local-notifications.git" />
-    <plugin name="de.appplant.cordova.plugin.email-composer" spec="https://github.com/katzer/cordova-plugin-email-composer.git" />
-    <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications.git" />
-    <plugin name="phonegap-nfc" spec="~0.6.6" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="git+https://github.com/phonegap/phonegap-plugin-barcodescanner.git" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <config-file parent="CFBundleDevelopmentRegion" target="*-Info.plist">
         <array>
@@ -113,8 +104,17 @@
             <string>es</string>
         </array>
     </config-file>
-    <plugin name="cordova-plugin-localization-strings" spec="https://github.com/kelvinhokk/cordova-plugin-localization-strings.git" />
     <access origin="*" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="git+https://github.com/phonegap/phonegap-plugin-barcodescanner.git" />
+    <plugin name="cordova-plugin-file" spec="~3.0.0" />
+    <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
+    <plugin name="cordova-plugin-http" spec="~1.2.0" />
+    <plugin name="de.appplant.cordova.plugin.email-composer" spec="https://github.com/katzer/cordova-plugin-email-composer.git" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications.git" />
+    <plugin name="phonegap-nfc" spec="~0.6.6" />
+    <plugin name="cordova-plugin-localization-strings" spec="git+https://github.com/kelvinhokk/cordova-plugin-localization-strings.git" />
+    <plugin name="cordova-plugin-email-composer" spec="https://github.com/katzer/cordova-plugin-email-composer.git" />
+    <plugin name="cordova-plugin-local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications.git" />
     <engine name="android" spec="^6.2.3" />
-    <engine name="ios" spec="^4.5.4" />
+    <engine name="ios" spec="^4.5.5" />
 </widget>

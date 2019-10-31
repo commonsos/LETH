@@ -103,16 +103,16 @@ var app = angular.module('podular', [
     if (typeof localStorage.Transactions == 'undefined') {localStorage.Transactions = '[]';}
     if (typeof localStorage.Tokens == 'undefined') {localStorage.Tokens = '[]';}
     if (typeof localStorage.NodeHost == 'undefined') {
-      localStorage.NodeHost = "https://k0xlmz50yh:GO9hX5JnprKRDoxT5_QUHI30KUl6iPFSmHYiza2kMNI@k0ldcm3jbt-k0wqps2vse-rpc.ap-northeast-2.kaleido.io";
+      localStorage.NodeHost = "http://103.239.19.66:8545";
     }
 
     // 20180516 force update node host
     if (localStorage.NodeHost == "http://54.95.150.65:8545") {
-      localStorage.NodeHost = "https://k0xlmz50yh:GO9hX5JnprKRDoxT5_QUHI30KUl6iPFSmHYiza2kMNI@k0ldcm3jbt-k0wqps2vse-rpc.ap-northeast-2.kaleido.io";
+      localStorage.NodeHost = "http://103.239.19.66:8545";
     }
 
     if (typeof localStorage.HostsList == 'undefined') {
-      localStorage.HostsList=JSON.stringify(["https://k0xlmz50yh:GO9hX5JnprKRDoxT5_QUHI30KUl6iPFSmHYiza2kMNI@k0ldcm3jbt-k0wqps2vse-rpc.ap-northeast-2.kaleido.io"]);
+      localStorage.HostsList=JSON.stringify(["http://103.239.19.66:8545"]);
     }
 
     if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'JPY', symbol:'¥', value: 'ZJPY'});}
