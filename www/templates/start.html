@@ -31,7 +31,6 @@
 			</div>
 			<div class="bar bar-footer bar-dark">
 				<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
-				<a class="button icon-right ion-chevron-right button-clear button-light" ng-click="skipMnemonics()"> {{'SKIP_NEMONICS' | translate}}
 				</a>
 			</div>
 		</div>
@@ -66,7 +65,8 @@
 								</div>
 							</div>
 						</div>
-						<button class="button button-block button-calm" ng-click="goStep(4)">{{'LOGIN_NEXT' | translate}} <i class="icon ion-chevron-right"></i></button>	
+						<button class="button button-block button-calm" ng-click="goStep(4)">{{'LOGIN_NEXT' | translate}} <i class="icon ion-chevron-right"></i></button>
+						<a class="button icon-right ion-chevron-right button-clear button-light" ng-click="skipMnemonics()"> {{'SKIP_NEMONICS' | translate}}
 				</div>
 				<div class="bar bar-footer bar-dark" >
 					<a class="button icon-left ion-chevron-left button-clear button-light" ng-click="goStep(0)" ng-show="step > 0"> {{'LOGIN_BACK' | translate}}</a>
