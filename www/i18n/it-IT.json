@@ -78,5 +78,7 @@
   "LOGIN_PASS_ERR_MSG": "La password deve contenere almeno da 8 a 20 lettere maiuscole e minuscole.",
   "LOGIN_CONFIRM_PASS_ERR_MSG": "le passwords non corrispondono",
   "LOGIN_PIN_ERR_MSG": "Il codice non è un numero di quattro lettere",
-  "SKIP_NEMONICS": "Salta"
+  "SKIP_NEMONICS": "Salta",
+  "APLICATION_NAV": "APP"
+
 }

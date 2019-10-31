@@ -78,5 +78,7 @@
   "LOGIN_PASS_ERR_MSG": "パスワードは8桁から20桁の大文字小文字数字が最低一文字入っている必要があります",
   "LOGIN_CONFIRM_PASS_ERR_MSG": "パスワードが一致しません",
   "LOGIN_PIN_ERR_MSG": "コードが４文字の数字ではありません",
-  "SKIP_NEMONICS": "スキップする"
+  "SKIP_NEMONICS": "スキップする",
+  "APLICATION_NAV": "アプリ"
+
 }

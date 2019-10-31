@@ -78,5 +78,6 @@
   "LOGIN_PASS_ERR_MSG": "Das Passwort muss mindestens einen 8 bis 20 Groß- und Kleinbuchstaben enthalten.",
   "LOGIN_CONFIRM_PASS_ERR_MSG": "Passwörter stimmen nicht überein",
   "LOGIN_PIN_ERR_MSG": "Der Code besteht nicht aus vier Buchstaben",
-  "SKIP_NEMONICS": "overspringen"
+  "SKIP_NEMONICS": "overspringen",
+  "APLICATION_NAV": "APP"
 }
