@@ -702,3 +702,7 @@ bottom: 150;
     display: block;
     height: calc(100vh);
  }
+
+ .dapp_container{
+  padding-top: 60px;
+ }
