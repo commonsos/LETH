@@ -103,16 +103,16 @@ var app = angular.module('podular', [
     if (typeof localStorage.Transactions == 'undefined') {localStorage.Transactions = '[]';}
     if (typeof localStorage.Tokens == 'undefined') {localStorage.Tokens = '[]';}
     if (typeof localStorage.NodeHost == 'undefined') {
-      localStorage.NodeHost = "http://103.239.19.66:8545";
+      localStorage.NodeHost = "https://seed.commons.earth";
     }
 
     // 20180516 force update node host
     if (localStorage.NodeHost == "http://54.95.150.65:8545") {
-      localStorage.NodeHost = "http://103.239.19.66:8545";
+      localStorage.NodeHost = "https://seed.commons.earth";
     }
 
     if (typeof localStorage.HostsList == 'undefined') {
-      localStorage.HostsList=JSON.stringify(["http://103.239.19.66:8545"]);
+      localStorage.HostsList=JSON.stringify(["https://seed.commons.earth"]);
     }
 
     if (typeof localStorage.BaseCurrency == 'undefined') {localStorage.BaseCurrency = JSON.stringify({ name: 'JPY', symbol:'¥', value: 'ZJPY'});}
