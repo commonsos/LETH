@@ -6,7 +6,6 @@
         "@angular/platform-server": "^5.2.7",
         "@angular/service-worker": "^5.2.7",
         "@ionic-native/barcode-scanner": "^4.5.3",
-        "cordova": "^9.0.0",
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.5.5",
         "cordova-plugin-email-composer": "git+https://github.com/katzer/cordova-plugin-email-composer.git",

@@ -46,8 +46,9 @@ https://nodejs.org/dist/v4.2.3/node-v4.2.3.pkg
 
 Install ionic and cordova
 ```bash
-sudo npm install -g cordova ionic
+sudo npm install -g cordova@8.1.2 ionic
 ```
+NOTE: THIS APLLICATION IS USING 8.1.2 if use CORDOVA 9.0.0 UPPER IT WILL GIVA AN ERRORS
 
 Clone the project
 ```bash
