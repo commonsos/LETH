@@ -66,6 +66,7 @@ IONIC ANDROID RELEASE
 
 JARSIGNER APK KEYSTORE
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore [realease_file.apk] commons-wallet
+password: golden12345
 
 GO TO ANDROID SDK FOLDER EX: C:\Users\Andy\AppData\Local\Android\Sdk\build-tools\27.0.3
 
